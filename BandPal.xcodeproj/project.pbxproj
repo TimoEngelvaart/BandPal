@@ -11,6 +11,8 @@
 		409A088F2AE9B4BB00761D16 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409A088E2AE9B4BB00761D16 /* ContentView.swift */; };
 		409A08912AE9B4BC00761D16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 409A08902AE9B4BC00761D16 /* Assets.xcassets */; };
 		409A08942AE9B4BC00761D16 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 409A08932AE9B4BC00761D16 /* Preview Assets.xcassets */; };
+		409A089B2AE9B50F00761D16 /* SetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409A089A2AE9B50F00761D16 /* SetList.swift */; };
+		409A089D2AE9BC3800761D16 /* SetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409A089C2AE9BC3800761D16 /* SetListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		409A088E2AE9B4BB00761D16 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		409A08902AE9B4BC00761D16 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		409A08932AE9B4BC00761D16 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		409A089A2AE9B50F00761D16 /* SetList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetList.swift; sourceTree = "<group>"; };
+		409A089C2AE9BC3800761D16 /* SetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +59,8 @@
 				409A088E2AE9B4BB00761D16 /* ContentView.swift */,
 				409A08902AE9B4BC00761D16 /* Assets.xcassets */,
 				409A08922AE9B4BC00761D16 /* Preview Content */,
+				409A089A2AE9B50F00761D16 /* SetList.swift */,
+				409A089C2AE9BC3800761D16 /* SetListView.swift */,
 			);
 			path = BandPal;
 			sourceTree = "<group>";
@@ -139,6 +145,8 @@
 			files = (
 				409A088F2AE9B4BB00761D16 /* ContentView.swift in Sources */,
 				409A088D2AE9B4BB00761D16 /* BandPalApp.swift in Sources */,
+				409A089B2AE9B50F00761D16 /* SetList.swift in Sources */,
+				409A089D2AE9BC3800761D16 /* SetListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
