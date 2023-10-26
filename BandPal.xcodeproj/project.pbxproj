@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4020E6282AEAF1720055B849 /* Urbanist-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4020E6272AEAF1720055B849 /* Urbanist-Regular.ttf */; };
+		4020E62A2AEAF2460055B849 /* Urbanist-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4020E6292AEAF2460055B849 /* Urbanist-SemiBold.ttf */; };
+		4020E62C2AEAF2B20055B849 /* SetListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4020E62B2AEAF2B20055B849 /* SetListHeader.swift */; };
 		409A088D2AE9B4BB00761D16 /* BandPalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409A088C2AE9B4BB00761D16 /* BandPalApp.swift */; };
 		409A088F2AE9B4BB00761D16 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409A088E2AE9B4BB00761D16 /* ContentView.swift */; };
 		409A08912AE9B4BC00761D16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 409A08902AE9B4BC00761D16 /* Assets.xcassets */; };
@@ -16,6 +19,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4020E6202AEAEE100055B849 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		4020E6272AEAF1720055B849 /* Urbanist-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Regular.ttf"; sourceTree = "<group>"; };
+		4020E6292AEAF2460055B849 /* Urbanist-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-SemiBold.ttf"; sourceTree = "<group>"; };
+		4020E62B2AEAF2B20055B849 /* SetListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SetListHeader.swift; path = ../SetListHeader.swift; sourceTree = "<group>"; };
 		409A08892AE9B4BB00761D16 /* BandPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BandPal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		409A088C2AE9B4BB00761D16 /* BandPalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandPalApp.swift; sourceTree = "<group>"; };
 		409A088E2AE9B4BB00761D16 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,12 +62,16 @@
 		409A088B2AE9B4BB00761D16 /* BandPal */ = {
 			isa = PBXGroup;
 			children = (
+				4020E6202AEAEE100055B849 /* Info.plist */,
 				409A088C2AE9B4BB00761D16 /* BandPalApp.swift */,
 				409A088E2AE9B4BB00761D16 /* ContentView.swift */,
 				409A08902AE9B4BC00761D16 /* Assets.xcassets */,
 				409A08922AE9B4BC00761D16 /* Preview Content */,
 				409A089A2AE9B50F00761D16 /* SetList.swift */,
 				409A089C2AE9BC3800761D16 /* SetListView.swift */,
+				4020E62B2AEAF2B20055B849 /* SetListHeader.swift */,
+				4020E6272AEAF1720055B849 /* Urbanist-Regular.ttf */,
+				4020E6292AEAF2460055B849 /* Urbanist-SemiBold.ttf */,
 			);
 			path = BandPal;
 			sourceTree = "<group>";
@@ -132,7 +143,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				409A08942AE9B4BC00761D16 /* Preview Assets.xcassets in Resources */,
+				4020E62A2AEAF2460055B849 /* Urbanist-SemiBold.ttf in Resources */,
 				409A08912AE9B4BC00761D16 /* Assets.xcassets in Resources */,
+				4020E6282AEAF1720055B849 /* Urbanist-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +156,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4020E62C2AEAF2B20055B849 /* SetListHeader.swift in Sources */,
 				409A088F2AE9B4BB00761D16 /* ContentView.swift in Sources */,
 				409A088D2AE9B4BB00761D16 /* BandPalApp.swift in Sources */,
 				409A089B2AE9B50F00761D16 /* SetList.swift in Sources */,
@@ -282,6 +296,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"BandPal/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BandPal/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -310,6 +325,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"BandPal/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BandPal/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
