@@ -4,12 +4,27 @@ struct SetListView: View {
     var body: some View {
         VStack {
             // Header
-            HStack {
-                Text("Voorste Venne")
-                    .font(Font.custom("Urbanist-SemiBold", size: 24))
-                
+            SetListHeader()
+                .padding(.bottom, 24)
+            
+            //Title
+            SetListHeaderTextView()
+                .padding(.bottom, 24)
+            
+            //ListItems
+            ScrollView {
+                SetListItemView(item: SetListItem(title: "Levels", artist: "Avicii", imageName: "Levels"))
+                SetListItemView(item: SetListItem(title: "Levels", artist: "Avicii", imageName: "Levels"))
+                SetListItemView(item: SetListItem(title: "Levels", artist: "Avicii", imageName: "Levels"))
+                SetListItemView(item: SetListItem(title: "Levels", artist: "Avicii", imageName: "Levels"))
+                SetListItemView(item: SetListItem(title: "Levels", artist: "Avicii", imageName: "Levels"))
+                SetListItemView(item: SetListItem(title: "Levels", artist: "Avicii", imageName: "Levels"))
+                SetListItemView(item: SetListItem(title: "Levels", artist: "Avicii", imageName: "Levels"))
+                SetListItemView(item: SetListItem(title: "Levels", artist: "Avicii", imageName: "Levels"))
             }
-        } 
+            
+            BottomBorderView()
+        }
     }
 }
 

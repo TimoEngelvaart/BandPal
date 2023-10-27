@@ -2,13 +2,15 @@ import SwiftUI
 
 struct SetListHeader: View {
     var body: some View {
-        HStack(alignment: .center, spacing: 12) {
+        HStack {
             Text("Voorste Venne")
                 .font(Font.custom("Urbanist-SemiBold", size: 24))
             Spacer()
             Image("Search")
-            Image("Group")  
+            Image("Group")
+                .padding(.leading, 3.5)
         }
+        .padding(.horizontal, 24)
     }
 }
 
