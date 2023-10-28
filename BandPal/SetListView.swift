@@ -4,7 +4,7 @@ struct SetListView: View {
     var body: some View {
         VStack {
             // Header
-            SetListHeader()
+            SetListHeader(showBackButton: false)
                 .padding(.bottom, 24)
             
             //Title

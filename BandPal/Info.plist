@@ -6,6 +6,8 @@
 	<array>
 		<string>Urbanist-Regular.ttf</string>
 		<string>Urbanist-SemiBold.ttf</string>
+		<string>Urbanist-Light.ttf</string>
+		<string>Urbanist-ExtraLight.ttf</string>
 	</array>
 </dict>
 </plist>
