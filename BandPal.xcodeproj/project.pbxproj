@@ -15,9 +15,9 @@
 		4058DA762AEC2A4300CDB1AC /* SetListHeaderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4058DA752AEC2A4300CDB1AC /* SetListHeaderTextView.swift */; };
 		4058DA782AEC2B4E00CDB1AC /* BottomBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4058DA772AEC2B4E00CDB1AC /* BottomBorderView.swift */; };
 		40963B5E2AED584D00C47688 /* AddSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40963B5D2AED584D00C47688 /* AddSongView.swift */; };
-		40963B602AED58E900C47688 /* BackHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40963B5F2AED58E900C47688 /* BackHeaderView.swift */; };
 		40963B622AED824600C47688 /* Urbanist-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40963B612AED824600C47688 /* Urbanist-Light.ttf */; };
 		40963B642AED827D00C47688 /* Urbanist-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40963B632AED827D00C47688 /* Urbanist-ExtraLight.ttf */; };
+		40963B662AED86F300C47688 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40963B652AED86F300C47688 /* InputView.swift */; };
 		409A088D2AE9B4BB00761D16 /* BandPalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409A088C2AE9B4BB00761D16 /* BandPalApp.swift */; };
 		409A088F2AE9B4BB00761D16 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409A088E2AE9B4BB00761D16 /* ContentView.swift */; };
 		409A08912AE9B4BC00761D16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 409A08902AE9B4BC00761D16 /* Assets.xcassets */; };
@@ -36,9 +36,9 @@
 		4058DA752AEC2A4300CDB1AC /* SetListHeaderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListHeaderTextView.swift; sourceTree = "<group>"; };
 		4058DA772AEC2B4E00CDB1AC /* BottomBorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBorderView.swift; sourceTree = "<group>"; };
 		40963B5D2AED584D00C47688 /* AddSongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSongView.swift; sourceTree = "<group>"; };
-		40963B5F2AED58E900C47688 /* BackHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackHeaderView.swift; sourceTree = "<group>"; };
 		40963B612AED824600C47688 /* Urbanist-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Light.ttf"; sourceTree = "<group>"; };
 		40963B632AED827D00C47688 /* Urbanist-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-ExtraLight.ttf"; sourceTree = "<group>"; };
+		40963B652AED86F300C47688 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		409A08892AE9B4BB00761D16 /* BandPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BandPal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		409A088C2AE9B4BB00761D16 /* BandPalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandPalApp.swift; sourceTree = "<group>"; };
 		409A088E2AE9B4BB00761D16 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -91,7 +91,7 @@
 				4058DA752AEC2A4300CDB1AC /* SetListHeaderTextView.swift */,
 				4058DA772AEC2B4E00CDB1AC /* BottomBorderView.swift */,
 				40963B5D2AED584D00C47688 /* AddSongView.swift */,
-				40963B5F2AED58E900C47688 /* BackHeaderView.swift */,
+				40963B652AED86F300C47688 /* InputView.swift */,
 				4020E6272AEAF1720055B849 /* Urbanist-Regular.ttf */,
 				4020E6292AEAF2460055B849 /* Urbanist-SemiBold.ttf */,
 				40963B612AED824600C47688 /* Urbanist-Light.ttf */,
@@ -188,9 +188,9 @@
 				40963B5E2AED584D00C47688 /* AddSongView.swift in Sources */,
 				409A089B2AE9B50F00761D16 /* SetList.swift in Sources */,
 				409A089D2AE9BC3800761D16 /* SetListView.swift in Sources */,
-				40963B602AED58E900C47688 /* BackHeaderView.swift in Sources */,
 				4058DA762AEC2A4300CDB1AC /* SetListHeaderTextView.swift in Sources */,
 				4058DA712AEBC06100CDB1AC /* SetListItem.swift in Sources */,
+				40963B662AED86F300C47688 /* InputView.swift in Sources */,
 				4058DA732AEBC5F700CDB1AC /* SetListItemView.swift in Sources */,
 				4058DA782AEC2B4E00CDB1AC /* BottomBorderView.swift in Sources */,
 			);
