@@ -2,21 +2,32 @@ import SwiftUI
 
 struct SetListItemView: View {
     let item: SetListItem
+    
     var body: some View {
         HStack(alignment: .center, spacing: 8) {
             HStack(alignment: .center, spacing: 16) {
                 ZStack {
-                    Rectangle()
-                    .foregroundColor(.clear)
-                    .frame(width: 120, height: 120)
-                    .background(
-                        Image(item.imageName)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 120, height: 120)
-                    .clipped()
-                    )
-                    .cornerRadius(20)
+                    if let albumArt = item.albumArt, let url = URL(string: albumArt) {
+                        AsyncImage(url: url) { phase in
+                            switch phase {
+                            case .success(let image):
+                                image
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 120, height: 120)
+                                    .clipped()
+                                    .cornerRadius(20)
+                            default:
+                                Rectangle()
+                                    .foregroundColor(.clear)
+                                    .frame(width: 120, height: 120)
+                            }
+                        }
+                    } else {
+                        Rectangle()
+                            .foregroundColor(.clear)
+                            .frame(width: 120, height: 120)
+                    }
                 }
                 VStack(alignment: .leading, spacing: 10) {
                     Text(item.title)
@@ -59,5 +70,6 @@ struct SetListItemView: View {
 }
 
 #Preview {
-    SetListItemView(item: SetListItem(title: "Levels", artist: "Avicii", imageName: "Levels"))
+    SetListItemView(item: SetListItem(title: "Levels", artist: "Avicii", albumArt: "test", songDuration: 0))
+
 }

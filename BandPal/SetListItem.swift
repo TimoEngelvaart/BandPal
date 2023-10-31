@@ -1,7 +1,8 @@
 import Foundation
 
 struct SetListItem {
-    var title: String
-    var artist: String
-    var imageName: String
+    let title: String
+    let artist: String
+    let albumArt: String? 
+    let songDuration: Int?
 }

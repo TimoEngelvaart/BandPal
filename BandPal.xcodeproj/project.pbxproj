@@ -18,6 +18,7 @@
 		40963B622AED824600C47688 /* Urbanist-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40963B612AED824600C47688 /* Urbanist-Light.ttf */; };
 		40963B642AED827D00C47688 /* Urbanist-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40963B632AED827D00C47688 /* Urbanist-ExtraLight.ttf */; };
 		40963B662AED86F300C47688 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40963B652AED86F300C47688 /* InputView.swift */; };
+		409941E22AF18F3E00D03A0A /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409941E12AF18F3E00D03A0A /* ButtonView.swift */; };
 		409A088D2AE9B4BB00761D16 /* BandPalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409A088C2AE9B4BB00761D16 /* BandPalApp.swift */; };
 		409A088F2AE9B4BB00761D16 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409A088E2AE9B4BB00761D16 /* ContentView.swift */; };
 		409A08912AE9B4BC00761D16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 409A08902AE9B4BC00761D16 /* Assets.xcassets */; };
@@ -30,7 +31,7 @@
 		4020E6202AEAEE100055B849 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4020E6272AEAF1720055B849 /* Urbanist-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Regular.ttf"; sourceTree = "<group>"; };
 		4020E6292AEAF2460055B849 /* Urbanist-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-SemiBold.ttf"; sourceTree = "<group>"; };
-		4020E62B2AEAF2B20055B849 /* SetListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SetListHeader.swift; path = ../SetListHeader.swift; sourceTree = "<group>"; };
+		4020E62B2AEAF2B20055B849 /* SetListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListHeader.swift; sourceTree = "<group>"; };
 		4058DA702AEBC06100CDB1AC /* SetListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListItem.swift; sourceTree = "<group>"; };
 		4058DA722AEBC5F700CDB1AC /* SetListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListItemView.swift; sourceTree = "<group>"; };
 		4058DA752AEC2A4300CDB1AC /* SetListHeaderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListHeaderTextView.swift; sourceTree = "<group>"; };
@@ -39,6 +40,7 @@
 		40963B612AED824600C47688 /* Urbanist-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Light.ttf"; sourceTree = "<group>"; };
 		40963B632AED827D00C47688 /* Urbanist-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-ExtraLight.ttf"; sourceTree = "<group>"; };
 		40963B652AED86F300C47688 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
+		409941E12AF18F3E00D03A0A /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		409A08892AE9B4BB00761D16 /* BandPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BandPal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		409A088C2AE9B4BB00761D16 /* BandPalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandPalApp.swift; sourceTree = "<group>"; };
 		409A088E2AE9B4BB00761D16 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -59,6 +61,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		409941E32AF192D500D03A0A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				409A089C2AE9BC3800761D16 /* SetListView.swift */,
+				4020E62B2AEAF2B20055B849 /* SetListHeader.swift */,
+				4058DA722AEBC5F700CDB1AC /* SetListItemView.swift */,
+				4058DA752AEC2A4300CDB1AC /* SetListHeaderTextView.swift */,
+				4058DA772AEC2B4E00CDB1AC /* BottomBorderView.swift */,
+				40963B5D2AED584D00C47688 /* AddSongView.swift */,
+				40963B652AED86F300C47688 /* InputView.swift */,
+				409941E12AF18F3E00D03A0A /* ButtonView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		409A08802AE9B4BB00761D16 = {
 			isa = PBXGroup;
 			children = (
@@ -84,14 +101,8 @@
 				409A08902AE9B4BC00761D16 /* Assets.xcassets */,
 				409A08922AE9B4BC00761D16 /* Preview Content */,
 				409A089A2AE9B50F00761D16 /* SetList.swift */,
-				409A089C2AE9BC3800761D16 /* SetListView.swift */,
-				4020E62B2AEAF2B20055B849 /* SetListHeader.swift */,
 				4058DA702AEBC06100CDB1AC /* SetListItem.swift */,
-				4058DA722AEBC5F700CDB1AC /* SetListItemView.swift */,
-				4058DA752AEC2A4300CDB1AC /* SetListHeaderTextView.swift */,
-				4058DA772AEC2B4E00CDB1AC /* BottomBorderView.swift */,
-				40963B5D2AED584D00C47688 /* AddSongView.swift */,
-				40963B652AED86F300C47688 /* InputView.swift */,
+				409941E32AF192D500D03A0A /* Views */,
 				4020E6272AEAF1720055B849 /* Urbanist-Regular.ttf */,
 				4020E6292AEAF2460055B849 /* Urbanist-SemiBold.ttf */,
 				40963B612AED824600C47688 /* Urbanist-Light.ttf */,
@@ -184,6 +195,7 @@
 			files = (
 				4020E62C2AEAF2B20055B849 /* SetListHeader.swift in Sources */,
 				409A088F2AE9B4BB00761D16 /* ContentView.swift in Sources */,
+				409941E22AF18F3E00D03A0A /* ButtonView.swift in Sources */,
 				409A088D2AE9B4BB00761D16 /* BandPalApp.swift in Sources */,
 				40963B5E2AED584D00C47688 /* AddSongView.swift in Sources */,
 				409A089B2AE9B50F00761D16 /* SetList.swift in Sources */,
