@@ -5,10 +5,16 @@ struct SetListHeader: View {
     var showSearchButton: Bool = true
     var showFilter: Bool = true
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     var body: some View {
         HStack {
             if showBackButton {
-                Image("Arrow-left")
+            Button(action: {
+                            self.presentationMode.wrappedValue.dismiss()
+                        }) {
+                            Image("Arrow-left")
+                        }
             }
             Text("Voorste Venne")
                 .font(Font.custom("Urbanist-SemiBold", size: 24))

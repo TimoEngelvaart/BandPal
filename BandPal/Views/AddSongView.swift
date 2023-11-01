@@ -6,9 +6,13 @@ struct AddSongView: View {
     @State private var albumArt: String? // To hold the URL of the album art
     @State private var songDuration: Int? // To hold the song duration
     @State private var albumName: String = ""
+    @Binding var setListItems: [SetListItem]
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     
     var body: some View {
+        
         VStack(alignment: .leading, spacing: 24)  {
             SetListHeader(showSearchButton: false, showFilter: false)
                 .padding(.bottom, 24)
@@ -29,6 +33,13 @@ struct AddSongView: View {
             InputView(placeholder: "Enter Album Name", text: $albumName, onCommit: {
                 fetchMusicInfo(song: songName, artist: artistName, album: albumName)
             })
+            Button(action: {
+                let newSong = SetListItem(title: songName, artist: artistName, albumArt: albumArt, songDuration: songDuration)
+                setListItems.append(newSong)
+                self.presentationMode.wrappedValue.dismiss()
+            }) {
+                ButtonView()
+            }
             
             // Display the album art
             if let albumArtURL = albumArt, let url = URL(string: albumArtURL) {
@@ -67,6 +78,7 @@ struct AddSongView: View {
             
             Spacer()
         }
+        .navigationBarBackButtonHidden(true)
     }
     func fetchMusicInfo(song: String, artist: String, album: String) {
         let query = "artist:\(artist) AND recording:\(song) AND release:\(album)"
@@ -191,6 +203,4 @@ struct CoverArtArchive: Codable {
 }
 
 
-#Preview {
-    AddSongView()
-}
+

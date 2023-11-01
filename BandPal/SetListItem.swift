@@ -1,6 +1,7 @@
 import Foundation
 
-struct SetListItem {
+struct SetListItem: Identifiable  {
+    let id = UUID()
     let title: String
     let artist: String
     let albumArt: String? 

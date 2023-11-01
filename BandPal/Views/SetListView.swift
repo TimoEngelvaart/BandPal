@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct SetListView: View {
+    @State var setListItems: [SetListItem] = []
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -14,8 +16,11 @@ struct SetListView: View {
                 
                 //ListItems
                 ScrollView {
-                    SetListItemView(item: SetListItem(title: "Levels", artist: "Avicii", albumArt: "test", songDuration: 0))
-                    NavigationLink(destination: AddSongView()) {
+                    ForEach(setListItems) { song in
+                           SetListItemView(item: SetListItem(title: song.title, artist: song.artist, albumArt: song.albumArt, songDuration: song.songDuration))
+                       }
+//                    SetListItemView(item: SetListItem(title: "Levels", artist: "Avicii", albumArt: "test", songDuration: 0))
+                    NavigationLink(destination: AddSongView(setListItems: $setListItems)) {
                         ButtonView()
                     }
                     
