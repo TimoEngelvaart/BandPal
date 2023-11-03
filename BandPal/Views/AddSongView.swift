@@ -14,7 +14,7 @@ struct AddSongView: View {
     var body: some View {
         
         VStack(alignment: .leading, spacing: 24)  {
-            SetListHeader(showSearchButton: false, showFilter: false)
+            SetListHeader(title: "Test", showSearchButton: false, showFilter: false)
                 .padding(.bottom, 24)
             // Header
             Text("Song Information")

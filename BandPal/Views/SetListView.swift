@@ -7,7 +7,7 @@ struct SetListView: View {
         NavigationStack {
             VStack {
                 // Header
-                SetListHeader(showBackButton: false)
+                SetListHeader(title: "Voorste Venne", showBackButton: false)
                     .padding(.bottom, 24)
                 
                 //Title
