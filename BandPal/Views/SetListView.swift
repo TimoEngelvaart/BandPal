@@ -11,7 +11,7 @@ struct SetListView: View {
                     .padding(.bottom, 24)
                 
                 //Title
-                SetListHeaderTextView()
+                SetListHeaderTextView(numSongs: setListItems.count)
                     .padding(.bottom, 24)
                 
                 //ListItems
