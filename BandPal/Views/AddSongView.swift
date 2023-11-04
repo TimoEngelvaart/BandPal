@@ -9,8 +9,14 @@ struct AddSongView: View {
     @Binding var setListItems: [SetListItem]
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
     
+    func onSongInfoChange() {
+        guard !songName.isEmpty, !artistName.isEmpty, !albumName.isEmpty else {
+            return
+        }
+        fetchMusicInfo(song: songName, artist: artistName, album: albumName)
+    }
+
     var body: some View {
         
         VStack(alignment: .leading, spacing: 24)  {
@@ -24,15 +30,15 @@ struct AddSongView: View {
                 .padding(.horizontal, 24)
      
             // Input field
-            InputView(placeholder: "Enter Song Name", text: $songName, onCommit: {
-                fetchMusicInfo(song: songName, artist: artistName, album: albumName)
-            })
-            InputView(placeholder: "Enter Artist Name", text: $artistName, onCommit: {
-                fetchMusicInfo(song: songName, artist: artistName, album: albumName)
-            })
-            InputView(placeholder: "Enter Album Name", text: $albumName, onCommit: {
-                fetchMusicInfo(song: songName, artist: artistName, album: albumName)
-            })
+            InputView(placeholder: "Enter Song Name", text: $songName, onCommit: {})
+                .onChange(of: songName) { onSongInfoChange() }
+
+            InputView(placeholder: "Enter Artist Name", text: $artistName, onCommit: {})
+                .onChange(of: artistName) { onSongInfoChange() }
+
+            InputView(placeholder: "Enter Album Name", text: $albumName, onCommit: {})
+                .onChange(of: albumName) { onSongInfoChange() }
+
             Button(action: {
                 let newSong = SetListItem(title: songName, artist: artistName, albumArt: albumArt, songDuration: songDuration)
                 setListItems.append(newSong)
