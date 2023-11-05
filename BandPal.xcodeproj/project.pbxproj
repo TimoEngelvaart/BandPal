@@ -14,6 +14,7 @@
 		4058DA732AEBC5F700CDB1AC /* SetListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4058DA722AEBC5F700CDB1AC /* SetListItemView.swift */; };
 		4058DA762AEC2A4300CDB1AC /* SetListHeaderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4058DA752AEC2A4300CDB1AC /* SetListHeaderTextView.swift */; };
 		4058DA782AEC2B4E00CDB1AC /* BottomBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4058DA772AEC2B4E00CDB1AC /* BottomBorderView.swift */; };
+		406A20882AF7F73F004D5214 /* VenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406A20872AF7F73F004D5214 /* VenueView.swift */; };
 		40963B5E2AED584D00C47688 /* AddSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40963B5D2AED584D00C47688 /* AddSongView.swift */; };
 		40963B622AED824600C47688 /* Urbanist-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40963B612AED824600C47688 /* Urbanist-Light.ttf */; };
 		40963B642AED827D00C47688 /* Urbanist-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40963B632AED827D00C47688 /* Urbanist-ExtraLight.ttf */; };
@@ -36,6 +37,7 @@
 		4058DA722AEBC5F700CDB1AC /* SetListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListItemView.swift; sourceTree = "<group>"; };
 		4058DA752AEC2A4300CDB1AC /* SetListHeaderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListHeaderTextView.swift; sourceTree = "<group>"; };
 		4058DA772AEC2B4E00CDB1AC /* BottomBorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBorderView.swift; sourceTree = "<group>"; };
+		406A20872AF7F73F004D5214 /* VenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueView.swift; sourceTree = "<group>"; };
 		40963B5D2AED584D00C47688 /* AddSongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSongView.swift; sourceTree = "<group>"; };
 		40963B612AED824600C47688 /* Urbanist-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Light.ttf"; sourceTree = "<group>"; };
 		40963B632AED827D00C47688 /* Urbanist-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -90,9 +92,18 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
+		406A20892AF7F74C004D5214 /* Venue */ = {
+			isa = PBXGroup;
+			children = (
+				406A20872AF7F73F004D5214 /* VenueView.swift */,
+			);
+			path = Venue;
+			sourceTree = "<group>";
+		};
 		409941E32AF192D500D03A0A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				406A20892AF7F74C004D5214 /* Venue */,
 				406A20862AF7DD1D004D5214 /* Shared */,
 				406A20852AF7DD11004D5214 /* VenueView */,
 				406A20842AF7DCDA004D5214 /* SetList */,
@@ -229,6 +240,7 @@
 				40963B662AED86F300C47688 /* InputView.swift in Sources */,
 				4058DA732AEBC5F700CDB1AC /* SetListItemView.swift in Sources */,
 				4058DA782AEC2B4E00CDB1AC /* BottomBorderView.swift in Sources */,
+				406A20882AF7F73F004D5214 /* VenueView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
