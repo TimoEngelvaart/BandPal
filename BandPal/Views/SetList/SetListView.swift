@@ -3,6 +3,22 @@ import SwiftUI
 struct SetListView: View {
     @State var setListItems: [SetListItem] = []
     
+    var totalDurationInSeconds: Int {
+            setListItems.compactMap { $0.songDuration }.reduce(0, +) / 1000
+        }
+
+        var formattedTotalDuration: String {
+            let totalSeconds = totalDurationInSeconds
+            let hours = totalSeconds / 3600
+            let minutes = (totalSeconds % 3600) / 60
+            let seconds = totalSeconds % 60
+            if hours > 0 {
+                return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+            } else {
+                return String(format: "%02d:%02d", minutes, seconds)
+            }
+        }
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -11,7 +27,7 @@ struct SetListView: View {
                     .padding(.bottom, 24)
                 
                 //Title
-                SetListHeaderTextView(numSongs: setListItems.count)
+                SetListHeaderTextView(numSongs: setListItems.count, totalDuration: totalDurationInSeconds)
                     .padding(.bottom, 24)
                 
                 //ListItems
