@@ -5,6 +5,8 @@ struct VenueView: View {
         VStack(alignment: .center, spacing: 28) {
             Text("Test")
                 .font(Font.custom("Urbanist-Regular", size: 24))
+            Spacer()
+            BottomBorderView()
         }
         .padding(.horizontal, 24)
         .padding(.top, 16)

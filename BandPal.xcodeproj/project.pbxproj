@@ -75,13 +75,6 @@
 			path = SetList;
 			sourceTree = "<group>";
 		};
-		406A20852AF7DD11004D5214 /* VenueView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = VenueView;
-			sourceTree = "<group>";
-		};
 		406A20862AF7DD1D004D5214 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -105,7 +98,6 @@
 			children = (
 				406A20892AF7F74C004D5214 /* Venue */,
 				406A20862AF7DD1D004D5214 /* Shared */,
-				406A20852AF7DD11004D5214 /* VenueView */,
 				406A20842AF7DCDA004D5214 /* SetList */,
 			);
 			path = Views;
