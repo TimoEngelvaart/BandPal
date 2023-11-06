@@ -26,6 +26,7 @@
 		409A08942AE9B4BC00761D16 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 409A08932AE9B4BC00761D16 /* Preview Assets.xcassets */; };
 		409A089B2AE9B50F00761D16 /* SetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409A089A2AE9B50F00761D16 /* SetList.swift */; };
 		409A089D2AE9BC3800761D16 /* SetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409A089C2AE9BC3800761D16 /* SetListView.swift */; };
+		40E923872AF97A9600CC3CA4 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E923862AF97A9600CC3CA4 /* StatusView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		409A08932AE9B4BC00761D16 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		409A089A2AE9B50F00761D16 /* SetList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetList.swift; sourceTree = "<group>"; };
 		409A089C2AE9BC3800761D16 /* SetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListView.swift; sourceTree = "<group>"; };
+		40E923862AF97A9600CC3CA4 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				406A20872AF7F73F004D5214 /* VenueView.swift */,
+				40E923862AF97A9600CC3CA4 /* StatusView.swift */,
 			);
 			path = Venue;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 				409A088F2AE9B4BB00761D16 /* ContentView.swift in Sources */,
 				409941E22AF18F3E00D03A0A /* ButtonView.swift in Sources */,
 				409A088D2AE9B4BB00761D16 /* BandPalApp.swift in Sources */,
+				40E923872AF97A9600CC3CA4 /* StatusView.swift in Sources */,
 				40963B5E2AED584D00C47688 /* AddSongView.swift in Sources */,
 				409A089B2AE9B50F00761D16 /* SetList.swift in Sources */,
 				409A089D2AE9BC3800761D16 /* SetListView.swift in Sources */,
