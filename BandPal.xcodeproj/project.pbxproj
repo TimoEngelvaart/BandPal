@@ -15,6 +15,7 @@
 		4058DA762AEC2A4300CDB1AC /* SetListHeaderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4058DA752AEC2A4300CDB1AC /* SetListHeaderTextView.swift */; };
 		4058DA782AEC2B4E00CDB1AC /* BottomBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4058DA772AEC2B4E00CDB1AC /* BottomBorderView.swift */; };
 		406A20882AF7F73F004D5214 /* VenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406A20872AF7F73F004D5214 /* VenueView.swift */; };
+		4086B5B32AFAD680003521A9 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4086B5B22AFAD680003521A9 /* Venue.swift */; };
 		40963B5E2AED584D00C47688 /* AddSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40963B5D2AED584D00C47688 /* AddSongView.swift */; };
 		40963B622AED824600C47688 /* Urbanist-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40963B612AED824600C47688 /* Urbanist-Light.ttf */; };
 		40963B642AED827D00C47688 /* Urbanist-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40963B632AED827D00C47688 /* Urbanist-ExtraLight.ttf */; };
@@ -39,6 +40,7 @@
 		4058DA752AEC2A4300CDB1AC /* SetListHeaderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListHeaderTextView.swift; sourceTree = "<group>"; };
 		4058DA772AEC2B4E00CDB1AC /* BottomBorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBorderView.swift; sourceTree = "<group>"; };
 		406A20872AF7F73F004D5214 /* VenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueView.swift; sourceTree = "<group>"; };
+		4086B5B22AFAD680003521A9 /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
 		40963B5D2AED584D00C47688 /* AddSongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSongView.swift; sourceTree = "<group>"; };
 		40963B612AED824600C47688 /* Urbanist-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Light.ttf"; sourceTree = "<group>"; };
 		40963B632AED827D00C47688 /* Urbanist-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				409A08922AE9B4BC00761D16 /* Preview Content */,
 				409A089A2AE9B50F00761D16 /* SetList.swift */,
 				4058DA702AEBC06100CDB1AC /* SetListItem.swift */,
+				4086B5B22AFAD680003521A9 /* Venue.swift */,
 				409941E32AF192D500D03A0A /* Views */,
 				4020E6272AEAF1720055B849 /* Urbanist-Regular.ttf */,
 				4020E6292AEAF2460055B849 /* Urbanist-SemiBold.ttf */,
@@ -233,6 +236,7 @@
 				409A089D2AE9BC3800761D16 /* SetListView.swift in Sources */,
 				4058DA762AEC2A4300CDB1AC /* SetListHeaderTextView.swift in Sources */,
 				4058DA712AEBC06100CDB1AC /* SetListItem.swift in Sources */,
+				4086B5B32AFAD680003521A9 /* Venue.swift in Sources */,
 				40963B662AED86F300C47688 /* InputView.swift in Sources */,
 				4058DA732AEBC5F700CDB1AC /* SetListItemView.swift in Sources */,
 				4058DA782AEC2B4E00CDB1AC /* BottomBorderView.swift in Sources */,

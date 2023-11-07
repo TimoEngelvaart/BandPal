@@ -28,7 +28,6 @@ struct SetListHeader: View {
                     .padding(.leading, 3.5)
             }
         }
-        .padding(.horizontal, 24)
     }
 }
 

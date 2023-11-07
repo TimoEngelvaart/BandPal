@@ -25,6 +25,8 @@ struct SetListView: View {
                 // Header
                 SetListHeader(title: "Voorste Venne", showBackButton: false)
                     .padding(.bottom, 24)
+                    .padding(.horizontal, 24)
+                
                 
                 //Title
                 SetListHeaderTextView(numSongs: setListItems.count, totalDuration: totalDurationInSeconds)
