@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct VenueView: View {
+    @State var Venues: [Venue] = []
+    
     var body: some View {
         VStack(alignment: .center, spacing: 24) {
             VStack(alignment: .center, spacing: 24) {
@@ -10,6 +12,9 @@ struct VenueView: View {
                         StatusView()
                             .padding(0)
                     }
+                List (Venues) { venue in
+                    VenueItem(venueItem: Venue(title: "Test", date: Date()))
+                }
                 Spacer()
             }
         }

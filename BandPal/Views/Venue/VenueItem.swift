@@ -18,7 +18,7 @@ struct VenueItem: View {
                     .bold()
                     .font(.custom("Urbanist-Regular", size: 18))
                     .foregroundColor(Color(red: 0.13, green: 0.13, blue: 0.13))
-                    .frame(maxWidth: .infinity)
+                    Spacer()
                 
                 Text(venueItem.date.customFormatted())
                     .bold()
