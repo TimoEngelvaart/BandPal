@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		400AE9672AFB7DFE00205863 /* VenueItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400AE9662AFB7DFE00205863 /* VenueItem.swift */; };
 		4020E6282AEAF1720055B849 /* Urbanist-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4020E6272AEAF1720055B849 /* Urbanist-Regular.ttf */; };
 		4020E62A2AEAF2460055B849 /* Urbanist-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4020E6292AEAF2460055B849 /* Urbanist-SemiBold.ttf */; };
 		4020E62C2AEAF2B20055B849 /* SetListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4020E62B2AEAF2B20055B849 /* SetListHeader.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		400AE9662AFB7DFE00205863 /* VenueItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueItem.swift; sourceTree = "<group>"; };
 		4020E6202AEAEE100055B849 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4020E6272AEAF1720055B849 /* Urbanist-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Regular.ttf"; sourceTree = "<group>"; };
 		4020E6292AEAF2460055B849 /* Urbanist-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 			children = (
 				406A20872AF7F73F004D5214 /* VenueView.swift */,
 				40E923862AF97A9600CC3CA4 /* StatusView.swift */,
+				400AE9662AFB7DFE00205863 /* VenueItem.swift */,
 			);
 			path = Venue;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 				4058DA712AEBC06100CDB1AC /* SetListItem.swift in Sources */,
 				4086B5B32AFAD680003521A9 /* Venue.swift in Sources */,
 				40963B662AED86F300C47688 /* InputView.swift in Sources */,
+				400AE9672AFB7DFE00205863 /* VenueItem.swift in Sources */,
 				4058DA732AEBC5F700CDB1AC /* SetListItemView.swift in Sources */,
 				4058DA782AEC2B4E00CDB1AC /* BottomBorderView.swift in Sources */,
 				406A20882AF7F73F004D5214 /* VenueView.swift in Sources */,
