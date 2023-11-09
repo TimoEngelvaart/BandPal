@@ -208,5 +208,3 @@ struct CoverArtArchive: Codable {
     var front: String?
 }
 
-
-
