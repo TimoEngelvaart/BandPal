@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct VenueView: View {
-    @State var venues: [Venue] = []
+    @State var setlist: [Setlist] = []
     
     var body: some View {
         NavigationStack {
@@ -13,9 +13,9 @@ struct VenueView: View {
                         StatusView()
                             .padding(0)
                     }
-                    List(venues) { venue in
-                                        NavigationLink(destination: SetListView(setListItems: venue.setList)) {
-                                            VenueItem(venueItem: venue) // Assuming VenueItem takes a Venue object directly
+                    List(setlist) { setlist in
+                                        NavigationLink(destination: SetListView(setListItems: setlist.setList)) {
+                                            VenueItem(venueItem: setlist) // Assuming VenueItem takes a Venue object directly
                                         }
                                         .listRowInsets(EdgeInsets()) // This removes the default padding
                                         .frame(maxWidth: .infinity, alignment: .leading) // Extends the row content to full width

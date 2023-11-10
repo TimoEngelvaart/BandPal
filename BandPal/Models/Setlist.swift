@@ -1,9 +1,9 @@
 import Foundation
 
-struct Venue: Identifiable {
+struct Setlist: Identifiable {
     let id = UUID()
     var title: String
     var date: Date
-    var setList: [SetListItem]
+    var setlist: [Song]
 }
 

@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		400AE9672AFB7DFE00205863 /* VenueItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400AE9662AFB7DFE00205863 /* VenueItem.swift */; };
+		400AE9672AFB7DFE00205863 /* SetlistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400AE9662AFB7DFE00205863 /* SetlistItem.swift */; };
 		4020E6282AEAF1720055B849 /* Urbanist-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4020E6272AEAF1720055B849 /* Urbanist-Regular.ttf */; };
 		4020E62A2AEAF2460055B849 /* Urbanist-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4020E6292AEAF2460055B849 /* Urbanist-SemiBold.ttf */; };
 		4020E62C2AEAF2B20055B849 /* SetListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4020E62B2AEAF2B20055B849 /* SetListHeader.swift */; };
-		4058DA712AEBC06100CDB1AC /* SetListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4058DA702AEBC06100CDB1AC /* SetListItem.swift */; };
+		4058DA712AEBC06100CDB1AC /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4058DA702AEBC06100CDB1AC /* Song.swift */; };
 		4058DA732AEBC5F700CDB1AC /* SetListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4058DA722AEBC5F700CDB1AC /* SetListItemView.swift */; };
 		4058DA762AEC2A4300CDB1AC /* SetListHeaderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4058DA752AEC2A4300CDB1AC /* SetListHeaderTextView.swift */; };
 		4058DA782AEC2B4E00CDB1AC /* BottomBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4058DA772AEC2B4E00CDB1AC /* BottomBorderView.swift */; };
-		406A20882AF7F73F004D5214 /* VenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406A20872AF7F73F004D5214 /* VenueView.swift */; };
-		4086B5B32AFAD680003521A9 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4086B5B22AFAD680003521A9 /* Venue.swift */; };
+		406A20882AF7F73F004D5214 /* SetlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406A20872AF7F73F004D5214 /* SetlistView.swift */; };
+		4086B5B32AFAD680003521A9 /* Setlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4086B5B22AFAD680003521A9 /* Setlist.swift */; };
 		40963B5E2AED584D00C47688 /* AddSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40963B5D2AED584D00C47688 /* AddSongView.swift */; };
 		40963B622AED824600C47688 /* Urbanist-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40963B612AED824600C47688 /* Urbanist-Light.ttf */; };
 		40963B642AED827D00C47688 /* Urbanist-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40963B632AED827D00C47688 /* Urbanist-ExtraLight.ttf */; };
@@ -26,23 +26,22 @@
 		409A088F2AE9B4BB00761D16 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409A088E2AE9B4BB00761D16 /* ContentView.swift */; };
 		409A08912AE9B4BC00761D16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 409A08902AE9B4BC00761D16 /* Assets.xcassets */; };
 		409A08942AE9B4BC00761D16 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 409A08932AE9B4BC00761D16 /* Preview Assets.xcassets */; };
-		409A089B2AE9B50F00761D16 /* SetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409A089A2AE9B50F00761D16 /* SetList.swift */; };
-		409A089D2AE9BC3800761D16 /* SetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409A089C2AE9BC3800761D16 /* SetListView.swift */; };
+		409A089D2AE9BC3800761D16 /* SongsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409A089C2AE9BC3800761D16 /* SongsView.swift */; };
 		40E923872AF97A9600CC3CA4 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E923862AF97A9600CC3CA4 /* StatusView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		400AE9662AFB7DFE00205863 /* VenueItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueItem.swift; sourceTree = "<group>"; };
+		400AE9662AFB7DFE00205863 /* SetlistItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetlistItem.swift; sourceTree = "<group>"; };
 		4020E6202AEAEE100055B849 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4020E6272AEAF1720055B849 /* Urbanist-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Regular.ttf"; sourceTree = "<group>"; };
 		4020E6292AEAF2460055B849 /* Urbanist-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-SemiBold.ttf"; sourceTree = "<group>"; };
 		4020E62B2AEAF2B20055B849 /* SetListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListHeader.swift; sourceTree = "<group>"; };
-		4058DA702AEBC06100CDB1AC /* SetListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListItem.swift; sourceTree = "<group>"; };
+		4058DA702AEBC06100CDB1AC /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		4058DA722AEBC5F700CDB1AC /* SetListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListItemView.swift; sourceTree = "<group>"; };
 		4058DA752AEC2A4300CDB1AC /* SetListHeaderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListHeaderTextView.swift; sourceTree = "<group>"; };
 		4058DA772AEC2B4E00CDB1AC /* BottomBorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBorderView.swift; sourceTree = "<group>"; };
-		406A20872AF7F73F004D5214 /* VenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueView.swift; sourceTree = "<group>"; };
-		4086B5B22AFAD680003521A9 /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
+		406A20872AF7F73F004D5214 /* SetlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetlistView.swift; sourceTree = "<group>"; };
+		4086B5B22AFAD680003521A9 /* Setlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setlist.swift; sourceTree = "<group>"; };
 		40963B5D2AED584D00C47688 /* AddSongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSongView.swift; sourceTree = "<group>"; };
 		40963B612AED824600C47688 /* Urbanist-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Light.ttf"; sourceTree = "<group>"; };
 		40963B632AED827D00C47688 /* Urbanist-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -53,8 +52,7 @@
 		409A088E2AE9B4BB00761D16 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		409A08902AE9B4BC00761D16 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		409A08932AE9B4BC00761D16 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		409A089A2AE9B50F00761D16 /* SetList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetList.swift; sourceTree = "<group>"; };
-		409A089C2AE9BC3800761D16 /* SetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListView.swift; sourceTree = "<group>"; };
+		409A089C2AE9BC3800761D16 /* SongsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsView.swift; sourceTree = "<group>"; };
 		40E923862AF97A9600CC3CA4 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,16 +67,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		406A20842AF7DCDA004D5214 /* SetList */ = {
+		4064847E2AFD7C34008E3F08 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				409A089C2AE9BC3800761D16 /* SetListView.swift */,
+				4086B5B22AFAD680003521A9 /* Setlist.swift */,
+				4058DA702AEBC06100CDB1AC /* Song.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		406A20842AF7DCDA004D5214 /* Songs */ = {
+			isa = PBXGroup;
+			children = (
+				409A089C2AE9BC3800761D16 /* SongsView.swift */,
 				4058DA752AEC2A4300CDB1AC /* SetListHeaderTextView.swift */,
 				4020E62B2AEAF2B20055B849 /* SetListHeader.swift */,
 				4058DA722AEBC5F700CDB1AC /* SetListItemView.swift */,
 				40963B5D2AED584D00C47688 /* AddSongView.swift */,
 			);
-			path = SetList;
+			path = Songs;
 			sourceTree = "<group>";
 		};
 		406A20862AF7DD1D004D5214 /* Shared */ = {
@@ -91,22 +98,22 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		406A20892AF7F74C004D5214 /* Venue */ = {
+		406A20892AF7F74C004D5214 /* Setlists */ = {
 			isa = PBXGroup;
 			children = (
-				406A20872AF7F73F004D5214 /* VenueView.swift */,
+				406A20872AF7F73F004D5214 /* SetlistView.swift */,
 				40E923862AF97A9600CC3CA4 /* StatusView.swift */,
-				400AE9662AFB7DFE00205863 /* VenueItem.swift */,
+				400AE9662AFB7DFE00205863 /* SetlistItem.swift */,
 			);
-			path = Venue;
+			path = Setlists;
 			sourceTree = "<group>";
 		};
 		409941E32AF192D500D03A0A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				406A20892AF7F74C004D5214 /* Venue */,
+				406A20892AF7F74C004D5214 /* Setlists */,
 				406A20862AF7DD1D004D5214 /* Shared */,
-				406A20842AF7DCDA004D5214 /* SetList */,
+				406A20842AF7DCDA004D5214 /* Songs */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -135,9 +142,7 @@
 				409A088C2AE9B4BB00761D16 /* BandPalApp.swift */,
 				409A08902AE9B4BC00761D16 /* Assets.xcassets */,
 				409A08922AE9B4BC00761D16 /* Preview Content */,
-				409A089A2AE9B50F00761D16 /* SetList.swift */,
-				4058DA702AEBC06100CDB1AC /* SetListItem.swift */,
-				4086B5B22AFAD680003521A9 /* Venue.swift */,
+				4064847E2AFD7C34008E3F08 /* Models */,
 				409941E32AF192D500D03A0A /* Views */,
 				4020E6272AEAF1720055B849 /* Urbanist-Regular.ttf */,
 				4020E6292AEAF2460055B849 /* Urbanist-SemiBold.ttf */,
@@ -235,16 +240,15 @@
 				409A088D2AE9B4BB00761D16 /* BandPalApp.swift in Sources */,
 				40E923872AF97A9600CC3CA4 /* StatusView.swift in Sources */,
 				40963B5E2AED584D00C47688 /* AddSongView.swift in Sources */,
-				409A089B2AE9B50F00761D16 /* SetList.swift in Sources */,
-				409A089D2AE9BC3800761D16 /* SetListView.swift in Sources */,
+				409A089D2AE9BC3800761D16 /* SongsView.swift in Sources */,
 				4058DA762AEC2A4300CDB1AC /* SetListHeaderTextView.swift in Sources */,
-				4058DA712AEBC06100CDB1AC /* SetListItem.swift in Sources */,
-				4086B5B32AFAD680003521A9 /* Venue.swift in Sources */,
+				4058DA712AEBC06100CDB1AC /* Song.swift in Sources */,
+				4086B5B32AFAD680003521A9 /* Setlist.swift in Sources */,
 				40963B662AED86F300C47688 /* InputView.swift in Sources */,
-				400AE9672AFB7DFE00205863 /* VenueItem.swift in Sources */,
+				400AE9672AFB7DFE00205863 /* SetlistItem.swift in Sources */,
 				4058DA732AEBC5F700CDB1AC /* SetListItemView.swift in Sources */,
 				4058DA782AEC2B4E00CDB1AC /* BottomBorderView.swift in Sources */,
-				406A20882AF7F73F004D5214 /* VenueView.swift in Sources */,
+				406A20882AF7F73F004D5214 /* SetlistView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

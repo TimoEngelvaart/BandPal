@@ -8,18 +8,18 @@ extension Date {
     }
 }
 
-struct VenueItem: View {
-    var venueItem: Venue
+struct SetlistItemView: View {
+    var setlistItem: Setlist
     
     var body: some View {
         HStack(alignment: .center, spacing: 16) {
-            Text(venueItem.title)
+            Text(setlistItem.title)
                 .bold()
                 .font(.custom("Urbanist-Regular", size: 18))
                 .foregroundColor(Color(red: 0.13, green: 0.13, blue: 0.13))
                 Spacer()
             
-            Text(venueItem.date.customFormatted())
+            Text(setlistItem.date.customFormatted())
                 .bold()
                 .font(.custom("Urbanist", size: 16))
                 .kerning(0.2)
@@ -36,5 +36,5 @@ struct VenueItem: View {
 }
  
 #Preview{
-    VenueView(venues: [Venue(title: "Voorste Venne", date: Date(), setList: [SetListItem(title: "Song 1", artist: "Artist 1", albumArt: nil, songDuration: 300)])])
+    SetlistItemView(venues: [Setlist(title: "Voorste Venne", date: Date(), setList: [SetListItem(title: "Song 1", artist: "Artist 1", albumArt: nil, songDuration: 300)])])
 }
