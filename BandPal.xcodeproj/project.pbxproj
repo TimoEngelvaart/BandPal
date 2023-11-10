@@ -91,6 +91,7 @@
 		406A20862AF7DD1D004D5214 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				40E923862AF97A9600CC3CA4 /* StatusView.swift */,
 				4058DA772AEC2B4E00CDB1AC /* BottomBorderView.swift */,
 				40963B652AED86F300C47688 /* InputView.swift */,
 				409941E12AF18F3E00D03A0A /* ButtonView.swift */,
@@ -102,7 +103,6 @@
 			isa = PBXGroup;
 			children = (
 				406A20872AF7F73F004D5214 /* SetlistView.swift */,
-				40E923862AF97A9600CC3CA4 /* StatusView.swift */,
 				400AE9662AFB7DFE00205863 /* SetlistItem.swift */,
 			);
 			path = Setlists;

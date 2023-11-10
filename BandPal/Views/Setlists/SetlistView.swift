@@ -1,21 +1,20 @@
 import SwiftUI
 
-struct VenueView: View {
-    @State var setlist: [Setlist] = []
+struct SetlistView: View {
+    @State var setlists: [Setlist] = []
     
     var body: some View {
         NavigationStack {
             VStack(alignment: .center, spacing: 24) {
                 VStack(alignment: .center, spacing: 24) {
-                    SetListHeader(title: "Venues", showBackButton: false, showFilter: false)
+                    SetListHeader(title: "Setlists", showBackButton: false, showFilter: false)
                         .padding(.bottom, 24)
                     HStack(alignment: .top, spacing: 0) {
                         StatusView()
                             .padding(0)
                     }
-                    List(setlist) { setlist in
-                                        NavigationLink(destination: SetListView(setListItems: setlist.setList)) {
-                                            VenueItem(venueItem: setlist) // Assuming VenueItem takes a Venue object directly
+                    List(setlists) { setlist in
+                        NavigationLink(destination: SetListView(setListItems: Setlist(title: setlist.title, date: setlist.date, setlist: setlist.setlist))) {
                                         }
                                         .listRowInsets(EdgeInsets()) // This removes the default padding
                                         .frame(maxWidth: .infinity, alignment: .leading) // Extends the row content to full width
@@ -33,6 +32,3 @@ struct VenueView: View {
     }
 }
 
-#Preview {
-    VenueView(venues: [Venue(title: "Voorste Venne", date: Date(), setList: [SetListItem(title: "Song 1", artist: "Artist 1", albumArt: nil, songDuration: 300)])])
-}
