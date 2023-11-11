@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct SongView: View {
+struct SongsView: View {
     @State var songs: [Song] = []
     
     var totalDurationInSeconds: Int {
@@ -34,7 +34,7 @@ struct SongView: View {
                 
                 //ListItems
                 List(songs){ song in
-                    Song(title: song.title, artist: song.artist, albumArt: song.albumArt, songDuration: song.songDuration)
+                    SongView(song: Song(title: song.title, artist: song.artist, albumArt: song.albumArt, songDuration: song.songDuration))
                         .listRowSeparator(.hidden) // Hide the separator
                         .swipeActions {
                             Button(role: .destructive) {
@@ -49,7 +49,7 @@ struct SongView: View {
 
                 .listStyle(PlainListStyle())
                 
-                NavigationLink(destination: AddSongView(setListItems: $songs)) {
+                NavigationLink(destination: AddSongView(songs: $songs)) {
                     ButtonView()
                 }
                 
@@ -61,5 +61,5 @@ struct SongView: View {
 }
 
 #Preview {
-    SetListView(setListItems: [SetListItem(title: "test", artist: "test", albumArt: "Test", songDuration: 0)])
+    SongsView(songs: [Song(title: "test", artist: "test", albumArt: "Test", songDuration: 0)])
 }

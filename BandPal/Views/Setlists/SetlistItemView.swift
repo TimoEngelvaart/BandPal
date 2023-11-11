@@ -36,5 +36,5 @@ struct SetlistItemView: View {
 }
  
 #Preview{
-    SetlistItemView(venues: [Setlist(title: "Voorste Venne", date: Date(), setList: [SetListItem(title: "Song 1", artist: "Artist 1", albumArt: nil, songDuration: 300)])])
+    SetlistItemView(setlistItem: Setlist(title: "Voorste Venne", date: Date(), setlist: [Song(title: "Song 1", artist: "Artist 1", albumArt: nil, songDuration: 300)]))
 }

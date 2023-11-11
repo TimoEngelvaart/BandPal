@@ -1,13 +1,13 @@
 import SwiftUI
 
-struct SetListItemView: View {
-    let item: SetListItem
+struct SongView: View {
+    let song: Song
     
     var body: some View {
         HStack(alignment: .center, spacing: 8) {
             HStack(alignment: .center, spacing: 16) {
                 ZStack {
-                   if let albumArt = item.albumArt, let url = URL(string: albumArt) {
+                   if let albumArt = song.albumArt, let url = URL(string: albumArt) {
                        AsyncImage(url: url) { phase in
                            switch phase {
                            case .success(let image):
@@ -34,7 +34,7 @@ struct SetListItemView: View {
                    }
                }
                 VStack(alignment: .leading, spacing: 10) {
-                    Text(item.title)
+                    Text(song.title)
                     .font(
                     Font.custom("Urbanist-SemiBold", size: 20)
                     .weight(.bold)
@@ -42,7 +42,7 @@ struct SetListItemView: View {
                     .foregroundColor(Color(red: 0.13, green: 0.13, blue: 0.13))
 
                     .frame(maxWidth: .infinity, alignment: .topLeading)
-                    Text(item.artist)
+                    Text(song.artist)
                         .font(
                         Font.custom("Urbanist-Regular", size: 14)
                         .weight(.semibold)
@@ -57,7 +57,7 @@ struct SetListItemView: View {
                             Image("Time Circle")
                             .frame(width: 15.33, height: 15.33)
                             // body / medium / regular
-                            Text(item.formattedDuration) 
+                            Text(song.formattedDuration)
                                   .font(Font.custom("Urbanist-Light", size: 14))
                                   .kerning(0.2)
                                   .foregroundColor(Color(red: 0.38, green: 0.38, blue: 0.38))
@@ -95,6 +95,5 @@ struct SetListItemView: View {
 }
 
 #Preview {
-    SetListItemView(item: SetListItem(title: "Levels", artist: "Avicii", albumArt: "test", songDuration: 500))
-
+    SongView(song: Song(title: "Levels", artist: "Avicii", albumArt: "test", songDuration: 500))
 }

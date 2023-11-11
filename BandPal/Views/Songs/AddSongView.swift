@@ -40,8 +40,8 @@ struct AddSongView: View {
                 .onChange(of: albumName) { onSongInfoChange() }
 
             Button(action: {
-                let newSong = SetListItem(title: songName, artist: artistName, albumArt: albumArt, songDuration: songDuration)
-                setListItems.append(newSong)
+                let newSong = Song(title: songName, artist: artistName, albumArt: albumArt, songDuration: songDuration)
+                songs.append(newSong)
                 self.presentationMode.wrappedValue.dismiss()
             }) {
                 ButtonView()
