@@ -18,7 +18,6 @@ struct AddSongView: View {
     }
 
     var body: some View {
-        
         VStack(alignment: .leading, spacing: 24)  {
             SetListHeader(title: "Test", showSearchButton: false, showFilter: false)
                 .padding(.bottom, 24)

@@ -10,15 +10,23 @@ struct SetlistView: View {
                     SetListHeader(title: "Setlists", showBackButton: false, showFilter: false)
                     StatusView()
                     List(setlists) { setlist in
-                        NavigationLink(destination: SongsView(songs: setlist.setlist)) {
+                        ZStack {
+                            // Your custom list item view
                             SetlistItemView(setlistItem: setlist)
+
+                            // Invisible NavigationLink
+                            NavigationLink(destination: SongsView(songs: setlist.setlist)) {
+                                EmptyView()
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                            .frame(width: 0)
+                            .opacity(0)
                         }
-                        .buttonStyle(PlainButtonStyle()) // Removes the arrow
-                        .listRowSeparator(.hidden) // Hide the separator
+                        .listRowSeparator(.hidden)
                     }
+                    .listStyle(PlainListStyle())
                     ButtonView()
                 }
-                .listStyle(PlainListStyle()) // Removes additional styling from List
                 Spacer()
             }
         }

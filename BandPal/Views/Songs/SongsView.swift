@@ -20,7 +20,6 @@ struct SongsView: View {
         }
     
     var body: some View {
-        NavigationStack {
             VStack {
                 // Header
                 SetListHeader(title: "Voorste Venne", showBackButton: false)
@@ -53,11 +52,10 @@ struct SongsView: View {
                     ButtonView()
                 }
                 
-                BottomBorderView()
+   
                 
             }
         }
-    }
 }
 
 #Preview {
