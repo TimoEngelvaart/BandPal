@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		400AE9672AFB7DFE00205863 /* SetlistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400AE9662AFB7DFE00205863 /* SetlistItem.swift */; };
+		400AE9672AFB7DFE00205863 /* SetlistItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400AE9662AFB7DFE00205863 /* SetlistItemView.swift */; };
 		4020E6282AEAF1720055B849 /* Urbanist-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4020E6272AEAF1720055B849 /* Urbanist-Regular.ttf */; };
 		4020E62A2AEAF2460055B849 /* Urbanist-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4020E6292AEAF2460055B849 /* Urbanist-SemiBold.ttf */; };
 		4020E62C2AEAF2B20055B849 /* SetListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4020E62B2AEAF2B20055B849 /* SetListHeader.swift */; };
@@ -31,7 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		400AE9662AFB7DFE00205863 /* SetlistItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetlistItem.swift; sourceTree = "<group>"; };
+		400AE9662AFB7DFE00205863 /* SetlistItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetlistItemView.swift; sourceTree = "<group>"; };
 		4020E6202AEAEE100055B849 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4020E6272AEAF1720055B849 /* Urbanist-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Regular.ttf"; sourceTree = "<group>"; };
 		4020E6292AEAF2460055B849 /* Urbanist-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -103,7 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				406A20872AF7F73F004D5214 /* SetlistView.swift */,
-				400AE9662AFB7DFE00205863 /* SetlistItem.swift */,
+				400AE9662AFB7DFE00205863 /* SetlistItemView.swift */,
 			);
 			path = Setlists;
 			sourceTree = "<group>";
@@ -245,7 +245,7 @@
 				4058DA712AEBC06100CDB1AC /* Song.swift in Sources */,
 				4086B5B32AFAD680003521A9 /* Setlist.swift in Sources */,
 				40963B662AED86F300C47688 /* InputView.swift in Sources */,
-				400AE9672AFB7DFE00205863 /* SetlistItem.swift in Sources */,
+				400AE9672AFB7DFE00205863 /* SetlistItemView.swift in Sources */,
 				4058DA732AEBC5F700CDB1AC /* SetListItemView.swift in Sources */,
 				4058DA782AEC2B4E00CDB1AC /* BottomBorderView.swift in Sources */,
 				406A20882AF7F73F004D5214 /* SetlistView.swift in Sources */,

@@ -14,7 +14,7 @@ struct SetlistView: View {
                             .padding(0)
                     }
                     List(setlists) { setlist in
-                        NavigationLink(destination: SetListView(setListItems: Setlist(title: setlist.title, date: setlist.date, setlist: setlist.setlist))) {
+                        NavigationLink(destination: SongView(setListItems: Setlist(title: setlist.title, date: setlist.date, setlist: setlist.setlist))) {
                                         }
                                         .listRowInsets(EdgeInsets()) // This removes the default padding
                                         .frame(maxWidth: .infinity, alignment: .leading) // Extends the row content to full width

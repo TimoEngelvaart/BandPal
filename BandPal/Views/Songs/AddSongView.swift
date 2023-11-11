@@ -6,7 +6,7 @@ struct AddSongView: View {
     @State private var albumArt: String? // To hold the URL of the album art
     @State private var songDuration: Int? // To hold the song duration
     @State private var albumName: String = ""
-    @Binding var setListItems: [SetListItem]
+    @Binding var songs: [Song]
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     

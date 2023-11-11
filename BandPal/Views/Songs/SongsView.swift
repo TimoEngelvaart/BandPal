@@ -1,10 +1,10 @@
 import SwiftUI
 
-struct SetListView: View {
-    @State var setListItems: [SetListItem] = []
+struct SongView: View {
+    @State var songs: [Song] = []
     
     var totalDurationInSeconds: Int {
-            setListItems.compactMap { $0.songDuration }.reduce(0, +) / 1000
+            songs.compactMap { $0.songDuration }.reduce(0, +) / 1000
         }
 
         var formattedTotalDuration: String {
@@ -29,17 +29,17 @@ struct SetListView: View {
                 
                 
                 //Title
-                SetListHeaderTextView(numSongs: setListItems.count, totalDuration: totalDurationInSeconds)
+                SetListHeaderTextView(numSongs: songs.count, totalDuration: totalDurationInSeconds)
                     .padding(.bottom, 24)
                 
                 //ListItems
-                List(setListItems){ song in
-                    SetListItemView(item: SetListItem(title: song.title, artist: song.artist, albumArt: song.albumArt, songDuration: song.songDuration))
+                List(songs){ song in
+                    Song(title: song.title, artist: song.artist, albumArt: song.albumArt, songDuration: song.songDuration)
                         .listRowSeparator(.hidden) // Hide the separator
                         .swipeActions {
                             Button(role: .destructive) {
-                                if let index = setListItems.firstIndex(where: { $0.id == song.id }) {
-                                    setListItems.remove(at: index)
+                                if let index = songs.firstIndex(where: { $0.id == song.id }) {
+                                    songs.remove(at: index)
                                 }
                             } label: {
                                 Label("Delete", systemImage: "trash")
@@ -49,7 +49,7 @@ struct SetListView: View {
 
                 .listStyle(PlainListStyle())
                 
-                NavigationLink(destination: AddSongView(setListItems: $setListItems)) {
+                NavigationLink(destination: AddSongView(setListItems: $songs)) {
                     ButtonView()
                 }
                 
