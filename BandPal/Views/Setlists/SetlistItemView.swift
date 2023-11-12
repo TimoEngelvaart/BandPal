@@ -26,12 +26,13 @@ struct SetlistItemView: View {
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color(red: 0.35, green: 0.3, blue: 0.96))
         }
-        .padding() // Adjust padding as needed
+        .padding(24)// Adjust padding as needed
         .background(
-            RoundedRectangle(cornerRadius: 20)
-                .fill(Color.white)
-                .shadow(color: Color(red: 0.02, green: 0.02, blue: 0.06).opacity(0.05), radius: 30, x: 0, y: 4)
-        )
+                   RoundedRectangle(cornerRadius: 20)
+                       .fill(Color.white)
+                       .shadow(color: Color(red: 0.02, green: 0.02, blue: 0.06).opacity(0.05), radius: 30, x: 0, y: 4)
+                       .edgesIgnoringSafeArea(.all) // Ignore safe area to extend the background
+               )
     }
 }
  
