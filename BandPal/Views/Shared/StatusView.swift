@@ -13,12 +13,12 @@ struct StatusView: View {
 struct StatusColumn: View {
     let title: String
     let color: Color
-    var lineThickness: CGFloat = 2 // Default line thickness
+    var lineThickness: CGFloat = 1 // Default line thickness
     
     var body: some View {
         VStack(alignment: .center, spacing: 12) {
             Text(title)
-                .font(Font.custom("Urbanist", size: 18).weight(.semibold))
+                .font(Font.custom("Urbanist-SemiBold", size: 18))
                 .kerning(0.2)
                 .multilineTextAlignment(.center)
                 .foregroundColor(color)

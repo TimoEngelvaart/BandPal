@@ -9,11 +9,7 @@ struct SetlistView: View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 24) { // Alignment to leading for VStack
                    SetListHeader(title: "Setlists", showBackButton: false, showFilter: false)
-                    .padding(.vertical, 12)
                     .frame(maxWidth: .infinity, minHeight: 48, maxHeight: 48, alignment: .leading)
-
-
-
                        .padding(.horizontal, globalHorizontalPadding)
                 
                 StatusView()
@@ -32,7 +28,8 @@ struct SetlistView: View {
                         Button(action: {
                             self.activeSetlist = setlist
                         }) {
-                            SetlistItemRow(setlistItem: setlist) // Custom row view
+                            SetlistItemView(setlistItem: setlist)
+                                .padding(.horizontal, 12)
                         }
                     }
                     .listRowBackground(Color.clear)
@@ -55,18 +52,6 @@ struct SetlistView: View {
             BottomBorderView()
         }
         
-    }
-}
-
-struct SetlistItemRow: View {
-    var setlistItem: Setlist
-    var body: some View {
-        SetlistItemView(setlistItem: setlistItem)
-            .background(
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(Color.white)
-                    .shadow(color: Color(red: 0.02, green: 0.02, blue: 0.06).opacity(0.05), radius: 30, x: 0, y: 4)
-            )
     }
 }
 
