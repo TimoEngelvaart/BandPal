@@ -5,7 +5,9 @@ struct AddSetlistView: View {
     @State private var dateString: String = ""
     @State private var validDate: Date?
     @State private var showDateError: Bool = false
-    
+    @Binding var setlists: [Setlist]
+
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var body: some View {
         VStack {
@@ -18,8 +20,17 @@ struct AddSetlistView: View {
                 Text("Invalid date format. Please use dd-MM-yyyy.")
                     .foregroundColor(.red)
             }
-           ButtonView()
 
+            Button(action: {
+                if let validDate = validDate, !title.isEmpty {
+                    let newSetlist = Setlist(title: title, date: validDate, setlist: [])
+                    setlists.append(newSetlist)
+                    presentationMode.wrappedValue.dismiss()
+                }
+                // You might want to handle the else case, maybe show an error message.
+            }) {
+                ButtonView()
+            }
         }
     }
 
@@ -40,5 +51,5 @@ struct AddSetlistView: View {
 }
 
 #Preview {
-    AddSetlistView()
+    AddSetlistView(setlists: .constant([]))
 }

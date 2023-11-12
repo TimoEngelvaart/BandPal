@@ -25,7 +25,9 @@ struct SetlistView: View {
                         .listRowSeparator(.hidden)
                     }
                     .listStyle(PlainListStyle())
-                    ButtonView()
+                    NavigationLink(destination: AddSetlistView(setlists: $setlists)) {
+                        ButtonView()
+                    }
                 }
                 Spacer()
             }
