@@ -2,6 +2,7 @@ import SwiftUI
 
 struct SongsView: View {
     @State var songs: [Song] = []
+    @Environment(\.presentationMode) var presentationMode
     
     var totalDurationInSeconds: Int {
             songs.compactMap { $0.songDuration }.reduce(0, +) / 1000
@@ -22,9 +23,9 @@ struct SongsView: View {
     var body: some View {
             VStack {
                 // Header
-                SetListHeader(title: "Voorste Venne", showBackButton: false)
+                SetListHeader(title: "Voorste Venne", showBackButton: true)
                     .padding(.bottom, 24)
-                    .padding(.horizontal, 24)
+                    
                 
                 
                 //Title
@@ -55,6 +56,9 @@ struct SongsView: View {
    
                 
             }
+            // Apply padding only if the view is presented in a standalone mode
+             .padding(.horizontal, presentationMode.wrappedValue.isPresented ? 0 : 24)
+            .navigationBarBackButtonHidden(true)
         }
 }
 

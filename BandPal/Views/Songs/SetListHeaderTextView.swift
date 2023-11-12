@@ -31,7 +31,6 @@ struct SetListHeaderTextView: View {
                 .font(Font.custom("Urbanist-Regular", size: 16))
             
         }
-        .padding(.horizontal, 24)
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
