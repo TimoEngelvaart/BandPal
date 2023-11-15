@@ -29,7 +29,7 @@ struct AddSetlistView: View {
                 }
                 // You might want to handle the else case, maybe show an error message.
             }) {
-                ButtonView()
+                ButtonView(buttonText: "Test")
             }
         }
     }

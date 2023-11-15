@@ -50,7 +50,7 @@ struct SongsView: View {
                 .listStyle(PlainListStyle())
                 
                 NavigationLink(destination: AddSongView(songs: $songs)) {
-                    ButtonView()
+                    ButtonView(buttonText: "Add Song")
                 }
                 
    

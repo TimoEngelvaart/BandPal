@@ -1,10 +1,11 @@
 import SwiftUI
 
 struct ButtonView: View {
+var buttonText: String
     var body: some View {
         HStack(alignment: .center, spacing: 10) {
             // body / large / bold
-            Text("Add New Song")
+            Text(self.buttonText)
               .font(
                 Font.custom("Urbanist", size: 16)
                   .weight(.bold)
@@ -20,11 +21,11 @@ struct ButtonView: View {
         .background(Color(red: 0.35, green: 0.3, blue: 0.96))
         .cornerRadius(100)
         .shadow(color: Color(red: 0.35, green: 0.3, blue: 0.96).opacity(0.25), radius: 12, x: 4, y: 8)
-        .padding(.horizontal, 24)
+
     }
     
 }
 
 #Preview {
-    ButtonView()
+    ButtonView(buttonText: "Test")
 }
