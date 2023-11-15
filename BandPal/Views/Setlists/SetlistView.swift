@@ -51,9 +51,12 @@ struct SetlistView: View {
                 .padding(.horizontal, globalHorizontalPadding - 16)
             }
             .background(.white)
-            ButtonView(buttonText: "Test")
-                .padding(.horizontal, 24)
-                .padding(.bottom, 24)
+            NavigationLink(destination: AddSetlistView(setlists: $setlists)) {
+                ButtonView(buttonText: "Add Setlist")
+                    .padding(.horizontal, 24)
+                    .padding(.bottom, 24)
+            }
+            
             BottomBorderView()
         }
     }

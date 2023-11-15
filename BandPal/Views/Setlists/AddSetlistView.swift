@@ -10,12 +10,14 @@ struct AddSetlistView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var body: some View {
-        VStack {
+        VStack(alignment: .leading, spacing: 24)  {
+            Spacer()
             InputView(placeholder: "Enter Title", text: $title, onCommit: {})
             InputView(placeholder: "Enter Date (dd-MM-yyyy)", text: $dateString, onCommit: {})
                 .onChange(of: dateString) { newValue in
                     self.convertAndValidateDate(from: newValue)
                 }
+            Spacer()
             if showDateError {
                 Text("Invalid date format. Please use dd-MM-yyyy.")
                     .foregroundColor(.red)
@@ -30,6 +32,7 @@ struct AddSetlistView: View {
                 // You might want to handle the else case, maybe show an error message.
             }) {
                 ButtonView(buttonText: "Test")
+                    .padding(.horizontal, 24)
             }
         }
     }
