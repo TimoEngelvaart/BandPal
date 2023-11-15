@@ -44,19 +44,18 @@ struct SetlistView: View {
                             Label("Delete", systemImage: "trash")
                         }
                     }
-                    ButtonView(buttonText: "Test")
-                    
+                
                 }
                 
                 .listStyle(PlainListStyle())
                 .padding(.horizontal, globalHorizontalPadding - 16)
             }
             .background(.white)
+            ButtonView(buttonText: "Test")
+                .padding(.horizontal, 24)
+                .padding(.bottom, 24)
             BottomBorderView()
-            
         }
-        
-        
     }
 }
 
