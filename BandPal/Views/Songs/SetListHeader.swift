@@ -7,6 +7,7 @@ struct SetListHeader: View {
     var showFilter: Bool = true
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.colorScheme) var colorScheme: ColorScheme // To detect dark or light mode
     
     var body: some View {
         HStack {
@@ -21,7 +22,7 @@ struct SetListHeader: View {
                 .font(Font.custom("Urbanist-SemiBold", size: 24))
             Spacer()
             if showSearchButton {
-                Image("Search")
+                Image(colorScheme == .light ? "Search" : "Search-white")
             }
             if showFilter {
                 Image("Group")

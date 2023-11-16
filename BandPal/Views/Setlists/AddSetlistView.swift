@@ -10,7 +10,7 @@ struct AddSetlistView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 24)  {
+        VStack(alignment: .center, spacing: 24)  {
             Spacer()
             InputView(placeholder: "Enter Title", text: $title, onCommit: {})
             InputView(placeholder: "Enter Date (dd-MM-yyyy)", text: $dateString, onCommit: {})
@@ -33,7 +33,9 @@ struct AddSetlistView: View {
             }) {
                 ButtonView(buttonText: "Test")
                     .padding(.horizontal, 24)
+                    .padding(.bottom, 12)
             }
+            BottomBorderView()
         }
     }
 

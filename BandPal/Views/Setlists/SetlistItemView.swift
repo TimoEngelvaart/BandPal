@@ -9,6 +9,8 @@ extension Date {
 }
 
 struct SetlistItemView: View {
+    @Environment(\.colorScheme) var colorScheme: ColorScheme // To detect dark or light mode
+    
     var setlistItem: Setlist
     
     var body: some View {
@@ -16,7 +18,7 @@ struct SetlistItemView: View {
             Text(setlistItem.title)
                 .bold()
                 .font(.custom("Urbanist-Regular", size: 18))
-                .foregroundColor(Color(red: 0.13, green: 0.13, blue: 0.13))
+                .foregroundColor(colorScheme == .light ? Color(red: 0.13, green: 0.13, blue: 0.13) : .white)
                 Spacer()
             
             Text(setlistItem.date.customFormatted())
@@ -26,13 +28,13 @@ struct SetlistItemView: View {
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color(red: 0.35, green: 0.3, blue: 0.96))
         }
-        .padding(24)// Adjust padding as needed
-        .background(
-                   RoundedRectangle(cornerRadius: 20)
-                       .fill(Color.white)
-                       .shadow(color: Color(red: 0.02, green: 0.02, blue: 0.06).opacity(0.05), radius: 30, x: 0, y: 4)
-                       .edgesIgnoringSafeArea(.all) // Ignore safe area to extend the background
-               )
+        .padding(24)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color(red: 0.12, green: 0.13, blue: 0.16))
+
+        .cornerRadius(20)
+        .shadow(color: Color(red: 0.02, green: 0.02, blue: 0.06).opacity(0.05), radius: 30, x: 0, y: 4)
+        
     }
 }
  
