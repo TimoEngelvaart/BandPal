@@ -73,14 +73,13 @@ struct BottomBorderView: View {
             .padding(.top, 8)
             .padding(.bottom, 0)
             .frame(width: 428, alignment: .top)
-            .background(.white)
+        
             .cornerRadius(24)
         }
         .padding(.horizontal, 0)
         .padding(.top, 8)
         .padding(.bottom, 0)
         .frame(width: 428, alignment: .top)
-        .background(.white)
         .cornerRadius(24)
     }
 }

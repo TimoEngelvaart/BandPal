@@ -50,7 +50,7 @@ struct SetlistView: View {
                 .listStyle(PlainListStyle())
                 .padding(.horizontal, globalHorizontalPadding - 16)
             }
-            .background(.white)
+          
             NavigationLink(destination: AddSetlistView(setlists: $setlists)) {
                 ButtonView(buttonText: "Add Setlist")
                     .padding(.horizontal, 24)
