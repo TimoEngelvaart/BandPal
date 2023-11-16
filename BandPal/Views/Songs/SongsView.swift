@@ -24,7 +24,9 @@ struct SongsView: View {
             VStack {
                 // Header
                 SetListHeader(title: "Voorste Venne", showBackButton: true)
+                    .frame(maxWidth: .infinity, minHeight: 48, maxHeight: 48, alignment: .leading)
                     .padding(.bottom, 24)
+                    
                     
                 
                 
@@ -52,12 +54,13 @@ struct SongsView: View {
                 NavigationLink(destination: AddSongView(songs: $songs)) {
                     ButtonView(buttonText: "Add Song")
                 }
+                BottomBorderView()
                 
    
                 
             }
             // Apply padding only if the view is presented in a standalone mode
-             .padding(.horizontal, presentationMode.wrappedValue.isPresented ? 0 : 24)
+             .padding(.horizontal, 24)
             .navigationBarBackButtonHidden(true)
         }
 }
