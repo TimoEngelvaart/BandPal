@@ -1,9 +1,21 @@
 import SwiftUI
 
+extension UINavigationController: UIGestureRecognizerDelegate {
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+        interactivePopGestureRecognizer?.delegate = self
+    }
+
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return viewControllers.count > 1
+    }
+}
+
 struct SetlistView: View {
     @State var setlists: [Setlist] = []
     @State private var activeSetlist: Setlist?
     let globalHorizontalPadding: CGFloat = 24 // Use this value for consistency
+    
 
     var body: some View {
         NavigationStack {
