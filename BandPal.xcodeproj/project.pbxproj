@@ -84,7 +84,6 @@
 				409A089C2AE9BC3800761D16 /* SongsView.swift */,
 				4058DA722AEBC5F700CDB1AC /* SongView.swift */,
 				4058DA752AEC2A4300CDB1AC /* SetListHeaderTextView.swift */,
-				4020E62B2AEAF2B20055B849 /* SetListHeader.swift */,
 				40963B5D2AED584D00C47688 /* AddSongView.swift */,
 			);
 			path = Songs;
@@ -93,6 +92,7 @@
 		406A20862AF7DD1D004D5214 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				4020E62B2AEAF2B20055B849 /* SetListHeader.swift */,
 				40E923862AF97A9600CC3CA4 /* StatusView.swift */,
 				4058DA772AEC2B4E00CDB1AC /* BottomBorderView.swift */,
 				40963B652AED86F300C47688 /* InputView.swift */,

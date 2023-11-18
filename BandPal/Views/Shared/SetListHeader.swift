@@ -2,6 +2,7 @@ import SwiftUI
 
 struct SetListHeader: View {
     var title: String
+    var showTitle: Bool = true
     var showBackButton: Bool = true
     var showSearchButton: Bool = true
     var showFilter: Bool = true
@@ -15,11 +16,13 @@ struct SetListHeader: View {
             Button(action: {
                             self.presentationMode.wrappedValue.dismiss()
                         }) {
-                            Image("Arrow-left")
+                            colorScheme == .light ? Image("Arrow-left") : Image("Arrow-left-white")
                         }
             }
-            Text(self.title)
-                .font(Font.custom("Urbanist-SemiBold", size: 24))
+            if showTitle {
+                Text(self.title)
+                    .font(Font.custom("Urbanist-SemiBold", size: 24))
+            }
             Spacer()
             if showSearchButton {
                 Image(colorScheme == .light ? "Search" : "Search-white")

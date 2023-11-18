@@ -8,9 +8,12 @@ struct AddSetlistView: View {
     @Binding var setlists: [Setlist]
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
 
     var body: some View {
         VStack(alignment: .center, spacing: 24)  {
+            SetListHeader(title: "", showTitle: false, showBackButton: true, showSearchButton: false, showFilter: false)
+                .padding(.horizontal, 24)
             Spacer()
             InputView(placeholder: "Enter Title", text: $title, onCommit: {})
             InputView(placeholder: "Enter Date (dd-MM-yyyy)", text: $dateString, onCommit: {})
@@ -37,6 +40,7 @@ struct AddSetlistView: View {
             }
             BottomBorderView()
         }
+        .navigationBarBackButtonHidden(true)
     }
 
     private func convertAndValidateDate(from dateString: String) {
