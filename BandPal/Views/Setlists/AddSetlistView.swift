@@ -13,7 +13,7 @@ struct AddSetlistView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 24)  {
             SetListHeader(title: "", showTitle: false, showBackButton: true, showSearchButton: false, showFilter: false)
-                .padding(.horizontal, 24)
+                .padding(.horizontal, 16)
             Spacer()
             InputView(placeholder: "Enter Title", text: $title, onCommit: {})
             InputView(placeholder: "Enter Date (dd-MM-yyyy)", text: $dateString, onCommit: {})
@@ -35,7 +35,7 @@ struct AddSetlistView: View {
                 // You might want to handle the else case, maybe show an error message.
             }) {
                 ButtonView(buttonText: "Test")
-                    .padding(.horizontal, 24)
+                    .padding(.horizontal, 16)
                     .padding(.bottom, 12)
             }
             BottomBorderView()

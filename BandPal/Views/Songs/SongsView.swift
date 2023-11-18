@@ -60,7 +60,7 @@ struct SongsView: View {
                 
             }
             // Apply padding only if the view is presented in a standalone mode
-             .padding(.horizontal, 24)
+             .padding(.horizontal, 16)
             .navigationBarBackButtonHidden(true)
         }
 }

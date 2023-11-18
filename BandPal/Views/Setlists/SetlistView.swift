@@ -14,7 +14,7 @@ extension UINavigationController: UIGestureRecognizerDelegate {
 struct SetlistView: View {
     @State var setlists: [Setlist] = []
     @State private var activeSetlist: Setlist?
-    let globalHorizontalPadding: CGFloat = 24 // Use this value for consistency
+    let globalHorizontalPadding: CGFloat = 16 // Use this value for consistency
     
 
     var body: some View {
@@ -65,7 +65,7 @@ struct SetlistView: View {
           
             NavigationLink(destination: AddSetlistView(setlists: $setlists)) {
                 ButtonView(buttonText: "Add Setlist")
-                    .padding(.horizontal, 24)
+                    .padding(.horizontal, 16)
                     .padding(.bottom, 24)
             }
             BottomBorderView()

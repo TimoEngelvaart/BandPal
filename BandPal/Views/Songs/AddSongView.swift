@@ -26,7 +26,7 @@ struct AddSongView: View {
                 .font(Font.custom("Urbanist-Light", size: 16))
                 .kerning(0.2)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal, 24)
+                .padding(.horizontal, 16)
      
             // Input field
             InputView(placeholder: "Enter Song Name", text: $songName, onCommit: {})
@@ -55,7 +55,7 @@ struct AddSongView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 100, height: 100)
-                            .padding(.horizontal, 24)
+                            .padding(.horizontal, 16)
                     case .failure:
                         Text("Failed to load")
                     case .empty:
@@ -66,7 +66,7 @@ struct AddSongView: View {
                 }
             } else {
                 Text("Album art not available")
-                    .padding(.horizontal, 24)
+                    .padding(.horizontal, 16)
             }
             
             // Display the song duration
@@ -74,10 +74,10 @@ struct AddSongView: View {
                 let minutes = (duration / 1000) / 60
                 let seconds = (duration / 1000) % 60
                 Text("Song Duration: \(minutes)m \(seconds)s")
-                    .padding(.horizontal, 24)
+                    .padding(.horizontal, 16)
             } else {
                 Text("Song duration not available")
-                    .padding(.horizontal, 24)
+                    .padding(.horizontal, 16)
             }
                 
             

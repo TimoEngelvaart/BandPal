@@ -89,7 +89,7 @@ struct SongView: View {
         .background(.white)
         .cornerRadius(28)
         .shadow(color: Color(red: 0.02, green: 0.02, blue: 0.06).opacity(0.05), radius: 30, x: 0, y: 4)
-        .padding(.horizontal, 24)
+        .padding(.horizontal, 16)
     }
     
 }
