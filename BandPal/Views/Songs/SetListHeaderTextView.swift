@@ -15,13 +15,15 @@ struct SetListHeaderTextView: View {
             }
         }
     
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
+    
     var body: some View {
         HStack(alignment: .center, spacing: 5) {
             //Header
             Text("\(numSongs) " + (numSongs == 1 ? "Song" : "Songs"))
                 .font(Font.custom("Urbanist-Regular", size: 20)
                 .weight(.bold))
-            .foregroundColor(Color(red: 0.13, green: 0.13, blue: 0.13))
+                .foregroundColor(colorScheme == .light ? Color(red: 0.13, green: 0.13, blue: 0.13) : .white)
             .frame(maxWidth: .infinity, alignment: .topLeading)
             //Icon
             Image("Time Circle 16")

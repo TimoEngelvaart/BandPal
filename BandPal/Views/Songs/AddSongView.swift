@@ -43,7 +43,7 @@ struct AddSongView: View {
                 songs.append(newSong)
                 self.presentationMode.wrappedValue.dismiss()
             }) {
-                ButtonView(buttonText: "Test")
+                ButtonView(buttonText: "Add Song")
             }
             
             // Display the album art

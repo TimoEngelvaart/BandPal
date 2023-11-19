@@ -30,7 +30,7 @@ struct SetlistItemView: View {
         }
         .padding(24)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color(red: 0.12, green: 0.13, blue: 0.16))
+        .background(colorScheme == .dark ? Color(red: 0.12, green: 0.13, blue: 0.16) : .white)
 
         .cornerRadius(20)
         .shadow(color: Color(red: 0.02, green: 0.02, blue: 0.06).opacity(0.05), radius: 30, x: 0, y: 4)

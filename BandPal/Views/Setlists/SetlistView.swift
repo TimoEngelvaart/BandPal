@@ -1,5 +1,6 @@
 import SwiftUI
 
+//To make swipe action available
 extension UINavigationController: UIGestureRecognizerDelegate {
     override open func viewDidLoad() {
         super.viewDidLoad()

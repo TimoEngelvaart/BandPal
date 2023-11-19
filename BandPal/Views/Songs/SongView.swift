@@ -3,6 +3,8 @@ import SwiftUI
 struct SongView: View {
     let song: Song
     
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
+    
     var body: some View {
         HStack(alignment: .center, spacing: 8) {
             HStack(alignment: .center, spacing: 16) {
@@ -39,7 +41,7 @@ struct SongView: View {
                     Font.custom("Urbanist-SemiBold", size: 20)
                     .weight(.bold)
                     )
-                    .foregroundColor(Color(red: 0.13, green: 0.13, blue: 0.13))
+                    .foregroundColor(colorScheme == .light ? Color(red: 0.13, green: 0.13, blue: 0.13) : .white)
 
                     .frame(maxWidth: .infinity, alignment: .topLeading)
                     Text(song.artist)
@@ -60,7 +62,7 @@ struct SongView: View {
                             Text(song.formattedDuration)
                                   .font(Font.custom("Urbanist-Light", size: 14))
                                   .kerning(0.2)
-                                  .foregroundColor(Color(red: 0.38, green: 0.38, blue: 0.38))
+                                  .foregroundColor(colorScheme == .light ? Color(red: 0.13, green: 0.13, blue: 0.13) : .white)
                                   .frame(maxWidth: .infinity, alignment: .topLeading)
                               .font(Font.custom("Urbanist-Light", size: 14))
                               .kerning(0.2)
@@ -86,7 +88,7 @@ struct SongView: View {
         .padding(.leading, 14)
         .padding(.trailing, 18)
         .padding(.vertical, 14)
-        .background(.white)
+        .background(colorScheme == .dark ? Color(red: 0.12, green: 0.13, blue: 0.16) : .white)
         .cornerRadius(28)
         .shadow(color: Color(red: 0.02, green: 0.02, blue: 0.06).opacity(0.05), radius: 30, x: 0, y: 4)
         .padding(.horizontal, 16)
