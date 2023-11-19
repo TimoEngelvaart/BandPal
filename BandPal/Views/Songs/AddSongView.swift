@@ -21,6 +21,7 @@ struct AddSongView: View {
         VStack(alignment: .leading, spacing: 24)  {
             SetListHeader(title: "Test", showSearchButton: false, showFilter: false)
                 .padding(.bottom, 24)
+                .padding(.horizontal, 16)
             // Header
             Text("Song Information")
                 .font(Font.custom("Urbanist-Light", size: 16))
@@ -44,6 +45,7 @@ struct AddSongView: View {
                 self.presentationMode.wrappedValue.dismiss()
             }) {
                 ButtonView(buttonText: "Add Song")
+                    .padding(.horizontal, 16)
             }
             
             // Display the album art

@@ -2,7 +2,7 @@ import SwiftUI
 
 struct BottomBorderView: View {
     // Example item names, adjust as needed
-    private let items = ["Home", "Profile", "Settings"]
+    private let items = ["Setlist", "Home"]
 
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
