@@ -20,10 +20,11 @@ struct SetlistView: View {
 
     var body: some View {
         NavigationStack {
-            VStack(alignment: .leading, spacing: 24) { // Alignment to leading for VStack
+            VStack(alignment: .leading, spacing: 0) { // Alignment to leading for VStack
                    SetListHeader(title: "Setlists", showBackButton: false, showFilter: false)
                     .frame(maxWidth: .infinity, minHeight: 48, maxHeight: 48, alignment: .leading)
                        .padding(.horizontal, globalHorizontalPadding)
+                       .padding(.bottom, 16)
                 
                 StatusView()
                     .padding(.horizontal, globalHorizontalPadding)
@@ -43,7 +44,7 @@ struct SetlistView: View {
                         }) {
                             SetlistItemView(setlistItem: setlist)
                                 .padding(.horizontal, 12)
-                                .padding(.bottom, 16)
+                                .padding(.top, 16)
                         }
                     }
                     .listRowBackground(Color.clear)
