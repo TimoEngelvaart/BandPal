@@ -23,7 +23,7 @@ struct SongsView: View {
     var body: some View {
             VStack {
                 // Header
-                SetListHeader(title: "Voorste Venne", showBackButton: true)
+                SetListHeader(title: "Voorste Venne", showBackButton: true, showFilter: false)
                     .frame(maxWidth: .infinity, minHeight: 48, maxHeight: 48, alignment: .leading)
                     .padding(.bottom, 24)
                     

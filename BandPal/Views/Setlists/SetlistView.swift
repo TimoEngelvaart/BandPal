@@ -43,6 +43,7 @@ struct SetlistView: View {
                         }) {
                             SetlistItemView(setlistItem: setlist)
                                 .padding(.horizontal, 12)
+                                .padding(.bottom, 16)
                         }
                     }
                     .listRowBackground(Color.clear)
@@ -67,7 +68,7 @@ struct SetlistView: View {
             NavigationLink(destination: AddSetlistView(setlists: $setlists)) {
                 ButtonView(buttonText: "Add Setlist")
                     .padding(.horizontal, 16)
-                    .padding(.bottom, 24)
+                    .padding(.bottom, 16)
             }
             BottomBorderView()
         }
@@ -75,5 +76,5 @@ struct SetlistView: View {
 }
 
 #Preview {
-    SetlistView(setlists: [Setlist(title: "Voorste Venne", date: Date(), setlist: [Song(title: "Heaven", artist: "Avicii", albumArt: nil, songDuration: nil)])])
+    SetlistView(setlists: [Setlist(title: "Voorste Venne", date: Date(), setlist: [Song(title: "Heaven", artist: "Avicii", albumArt: nil, songDuration: nil), ]), Setlist(title: "De Mads", date: Date(), setlist: [Song(title: "Heaven", artist: "Avicii", albumArt: nil, songDuration: nil), ])])
 }
