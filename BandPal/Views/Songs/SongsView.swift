@@ -48,6 +48,7 @@ struct SongsView: View {
                                     Label("Delete", systemImage: "trash")
                                 }
                         }
+                            .padding(.top, 16)
                     }
                     .listRowInsets(EdgeInsets()) // Remove default padding to extend swipe area
                 }

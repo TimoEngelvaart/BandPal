@@ -73,6 +73,7 @@ struct SongView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
+        .padding(.horizontal, 32)
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
