@@ -36,20 +36,25 @@ struct SongsView: View {
                 
                 //ListItems
                 List(songs){ song in
-                    SongView(song: Song(title: song.title, artist: song.artist, albumArt: song.albumArt, songDuration: song.songDuration))
-                        .listRowSeparator(.hidden) // Hide the separator
-                        .swipeActions {
-                            Button(role: .destructive) {
-                                if let index = songs.firstIndex(where: { $0.id == song.id }) {
-                                    songs.remove(at: index)
+                    ZStack {
+                        SongView(song: Song(title: song.title, artist: song.artist, albumArt: song.albumArt, songDuration: song.songDuration))
+                            .listRowSeparator(.hidden) // Hide the separator
+                            .swipeActions {
+                                Button(role: .destructive) {
+                                    if let index = songs.firstIndex(where: { $0.id == song.id }) {
+                                        songs.remove(at: index)
+                                    }
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
                                 }
-                            } label: {
-                                Label("Delete", systemImage: "trash")
-                            }
                         }
+                    }
+                    .listRowInsets(EdgeInsets()) // Remove default padding to extend swipe area
                 }
+      
 
                 .listStyle(PlainListStyle())
+                .padding(.horizontal, 16 - 16)
                 
                 NavigationLink(destination: AddSongView(songs: $songs)) {
                     ButtonView(buttonText: "Add Song")

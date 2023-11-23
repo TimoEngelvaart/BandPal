@@ -63,7 +63,6 @@ struct SetlistView: View {
                 }
                 
                 .listStyle(PlainListStyle())
-                .padding(.horizontal, globalHorizontalPadding - 16)
             }
           
             NavigationLink(destination: AddSetlistView(setlists: $setlists)) {
