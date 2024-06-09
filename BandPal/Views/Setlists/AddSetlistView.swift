@@ -26,7 +26,7 @@ struct AddSetlistView: View {
 
             VStack(alignment: .leading, spacing: 16) {
                 InputView(placeholder: "Enter Title", text: $title, onCommit: {})
-                    .padding(.horizontal, 16)
+                    .padding(.horizontal, 32)
 
                 dateButton
 
@@ -45,14 +45,33 @@ struct AddSetlistView: View {
         .onAppear {
             convertAndValidateDate(from: selectedDate)
         }
-        .sheet(isPresented: $isDatePickerPresented) {
-            CustomDatePickerModal(isPresented: $isDatePickerPresented, selectedDate: $selectedDate)
-        }
+        .overlay(
+            ZStack {
+                if isDatePickerPresented {
+                    VStack(spacing: 0) {
+                        Color.black.opacity(0.3)
+                            .ignoresSafeArea(edges: .top)
+                            .onTapGesture {
+                                withAnimation {
+                                    isDatePickerPresented = false
+                                }
+                            }
+                        Spacer()
+                    }
+
+                    CustomDatePickerModal(isPresented: $isDatePickerPresented, selectedDate: $selectedDate)
+                        .transition(.move(edge: .bottom))
+                        .animation(.spring(), value: isDatePickerPresented)
+                }
+            }
+        )
     }
 
     private var dateButton: some View {
         Button(action: {
-            isDatePickerPresented = true
+            withAnimation {
+                isDatePickerPresented = true
+            }
         }) {
             HStack {
                 Text("Select Date: \(formattedDate(selectedDate))")

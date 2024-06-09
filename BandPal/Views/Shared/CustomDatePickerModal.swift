@@ -9,14 +9,14 @@ struct CustomDatePickerModal: View {
             HStack {
                 Spacer()
                 Button(action: {
-                    isPresented = false
+                    withAnimation {
+                        isPresented = false
+                    }
                 }) {
                     Image(systemName: "xmark")
-                        .foregroundColor(.primary)
                         .padding()
                 }
             }
-            .background(Color.gray.opacity(0.2))
 
             DatePicker(
                 "",
@@ -28,22 +28,28 @@ struct CustomDatePickerModal: View {
             .padding()
 
             Button(action: {
-                isPresented = false
+                withAnimation {
+                    isPresented = false
+                }
             }) {
-                Text("Set")
-                    .font(.custom("Urbanist", size: 16).weight(.bold))
-                    .foregroundColor(.white)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
-                    .cornerRadius(10)
+                ButtonView(buttonText: "Set")
             }
             .padding()
-
             Spacer()
         }
         .background(Color.white)
         .cornerRadius(16)
         .padding()
+        .frame(maxHeight: .infinity) // Ensures the modal reaches the bottom
+        .ignoresSafeArea(.container, edges: .bottom) // Ensures it uses the full height
+    }
+}
+
+struct CustomDatePickerModal_Previews: PreviewProvider {
+    @State static var isPresented = true
+    @State static var selectedDate = Date()
+
+    static var previews: some View {
+        CustomDatePickerModal(isPresented: $isPresented, selectedDate: $selectedDate)
     }
 }
