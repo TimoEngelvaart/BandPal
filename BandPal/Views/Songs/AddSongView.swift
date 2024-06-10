@@ -1,183 +1,85 @@
 import SwiftUI
 
 struct AddSongView: View {
-    @State private var songName: String = ""
-    @State private var artistName: String = ""
-    @State private var albumArt: String? // To hold the URL of the album art
-    @State private var songDuration: Int? // To hold the song duration
-    @State private var albumName: String = ""
+    @State private var searchQuery: String = ""
+    @State private var searchResults: [Song] = []
     @Binding var songs: [Song]
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    func onSongInfoChange() {
-        guard !songName.isEmpty, !artistName.isEmpty, !albumName.isEmpty else {
+    func onSearchQueryChange() {
+        guard !searchQuery.isEmpty else {
+            searchResults = []
             return
         }
-        fetchMusicInfo(song: songName, artist: artistName, album: albumName)
+        searchMusic(query: searchQuery)
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 24)  {
-            SetListHeader(title: "Test", showSearchButton: false, showFilter: false)
+        VStack(alignment: .leading, spacing: 24) {
+            SetListHeader(title: "Add Song", showSearchButton: false, showFilter: false)
                 .padding(.bottom, 24)
                 .padding(.horizontal, 16)
-            // Header
-            Text("Song Information")
-                .font(Font.custom("Urbanist-Light", size: 16))
-                .kerning(0.2)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal, 16)
-     
-            // Input field
-            InputView(placeholder: "Enter Song Name", text: $songName, onCommit: {})
-                .onChange(of: songName) { onSongInfoChange() }
-
-            InputView(placeholder: "Enter Artist Name", text: $artistName, onCommit: {})
-                .onChange(of: artistName) { onSongInfoChange() }
-
-            InputView(placeholder: "Enter Album Name", text: $albumName, onCommit: {})
-                .onChange(of: albumName) { onSongInfoChange() }
-
-            Button(action: {
-                let newSong = Song(title: songName, artist: artistName, albumArt: albumArt, songDuration: songDuration)
-                songs.append(newSong)
-                self.presentationMode.wrappedValue.dismiss()
-            }) {
-                ButtonView(buttonText: "Add Song")
-                    .padding(.horizontal, 16)
-            }
             
-            // Display the album art
-            if let albumArtURL = albumArt, let url = URL(string: albumArtURL) {
-                AsyncImage(url: url) { phase in
-                    switch phase {
-                    case .success(let image):
-                        image
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 100, height: 100)
-                            .padding(.horizontal, 16)
-                    case .failure:
-                        Text("Failed to load")
-                    case .empty:
-                        ProgressView()
-                    @unknown default:
-                        EmptyView()
+            // Search Bar
+            TextField("Search for a song", text: $searchQuery)
+                .padding()
+                .background(Color(.systemGray6))
+                .cornerRadius(8)
+                .padding(.horizontal, 16)
+                .onChange(of: searchQuery) { _ in
+                    onSearchQueryChange()
+                }
+            
+            // Search Results
+            if !searchResults.isEmpty {
+                List(searchResults, id: \.id) { song in
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(song.title)
+                            Text(song.artist).font(.subheadline).foregroundColor(.gray)
+                        }
+                        Spacer()
+                        if let albumArt = song.albumArt, let url = URL(string: albumArt) {
+                            AsyncImage(url: url) { phase in
+                                switch phase {
+                                case .success(let image):
+                                    image
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 50, height: 50)
+                                case .failure:
+                                    Text("Failed to load")
+                                case .empty:
+                                    ProgressView()
+                                @unknown default:
+                                    EmptyView()
+                                }
+                            }
+                        } else {
+                            Image(systemName: "music.note")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 50, height: 50)
+                                .foregroundColor(.gray)
+                        }
+                    }
+                    .onTapGesture {
+                        songs.append(song)
+                        self.presentationMode.wrappedValue.dismiss()
                     }
                 }
             } else {
-                Text("Album art not available")
+                Text("No results found")
                     .padding(.horizontal, 16)
             }
-            
-            // Display the song duration
-            if let duration = songDuration {
-                let minutes = (duration / 1000) / 60
-                let seconds = (duration / 1000) % 60
-                Text("Song Duration: \(minutes)m \(seconds)s")
-                    .padding(.horizontal, 16)
-            } else {
-                Text("Song duration not available")
-                    .padding(.horizontal, 16)
-            }
-                
             
             Spacer()
         }
         .navigationBarBackButtonHidden(true)
     }
-    func fetchMusicInfo(song: String, artist: String, album: String) {
-        let query = "artist:\(artist) AND recording:\(song) AND release:\(album)"
-        let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-        let urlString = "https://musicbrainz.org/ws/2/recording/?query=\(encodedQuery)&fmt=json&limit=1"
-        
-        // Print the query
-        print("Executing MusicBrainz API query: \(urlString)")
-
-        
-        guard let url = URL(string: urlString) else { return }
-        
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let error = error {
-                print("Network error: \(error)")
-                return
-            }
-            
-            if let httpResponse = response as? HTTPURLResponse, !(200...299).contains(httpResponse.statusCode) {
-                print("Server returned status code: \(httpResponse.statusCode)")
-                return
-            }
-            if let data = data {
-                   // Print JSON for debugging
-                   let jsonStr = String(data: data, encoding: .utf8)
-                   print("MusicBrainz JSON response: \(jsonStr ?? "Unknown")")
-                   do {
-                       let searchResults = try JSONDecoder().decode(MusicBrainzSearchResults.self, from: data)
-                       if let firstRecording = searchResults.recordings.first,
-                          let firstRelease = firstRecording.releases.first,
-                          let mbid = firstRelease.id {
-                               fetchCoverArt(mbid: mbid)
-                               if let duration = firstRecording.length {
-                                   DispatchQueue.main.async {
-                                       self.songDuration = duration
-                                   }
-                               }
-                       }
-
-                   } catch {
-                       print("Error decoding JSON: \(error)")
-                   }
-            }
-        }
-        
-        task.resume()
-    }
-    func fetchCoverArt(mbid: String) {
-        let urlString = "https://coverartarchive.org/release/\(mbid)"
-        
-        guard let url = URL(string: urlString) else {
-            print("Invalid URL")
-            return
-        }
-        
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            // Check for network error
-            if let error = error {
-                print("Network error: \(error)")
-                return
-            }
-            
-            // Check for HTTP status code
-            if let httpResponse = response as? HTTPURLResponse, !(200...299).contains(httpResponse.statusCode) {
-                print("Server returned status code: \(httpResponse.statusCode)")
-                return
-            }
-            
-            // Check for valid JSON data
-            if let data = data {
-                // Print JSON for debugging
-                let jsonStr = String(data: data, encoding: .utf8)
-                print("CoverArt JSON response: \(jsonStr ?? "Unknown")")
-                do {
-                    let coverArtData = try JSONDecoder().decode(CoverArtData.self, from: data)
-                    if let firstImage = coverArtData.images.first {
-                        DispatchQueue.main.async {
-                            self.albumArt = firstImage.image
-                            print("Updated albumArt: \(self.albumArt ?? "N/A")")
-                        }
-                    }
-
-                } catch {
-                    print("Error decoding JSON: \(error)")
-                }
-            }
-        }
-        
-        task.resume()
-    }
-
-
+    
+    func searchMusic(query: String) 
 }
 
 struct CoverArtData: Codable {
@@ -188,24 +90,62 @@ struct CoverArtImage: Codable {
     var image: String
 }
 
-
-// Define the data model based on MusicBrainz API JSON structure.
 struct MusicBrainzSearchResults: Codable {
     var recordings: [Recording]
 }
 
 struct Recording: Codable {
+    var title: String?
     var length: Int?
-    var releases: [Release]
+    var artistCredit: [ArtistCredit]?
+    var releases: [Release]?
+
+    enum CodingKeys: String, CodingKey {
+        case title
+        case length
+        case artistCredit = "artist-credit"
+        case releases
+    }
+}
+
+struct ArtistCredit: Codable {
+    var name: String
+    var artist: Artist?
+
+    enum CodingKeys: String, CodingKey {
+        case name
+        case artist
+    }
+}
+
+struct Artist: Codable {
+    var id: String
+    var name: String
+    var sortName: String
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case sortName = "sort-name"
+    }
 }
 
 struct Release: Codable {
-    var id: String?
-    var title: String?  // Adding this to store the album name
     var coverArtArchive: CoverArtArchive?
+
+    enum CodingKeys: String, CodingKey {
+        case coverArtArchive = "cover-art-archive"
+    }
 }
 
 struct CoverArtArchive: Codable {
     var front: String?
 }
 
+struct AddSongView_Previews: PreviewProvider {
+    @State static var mockSongs = [Song]()
+    
+    static var previews: some View {
+        AddSongView(songs: $mockSongs)
+    }
+}
