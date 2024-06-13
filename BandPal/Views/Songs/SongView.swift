@@ -3,7 +3,7 @@ import SwiftUI
 struct SongView: View {
     let song: Song
     
-    @Environment(\.colorScheme) var colorScheme: ColorScheme
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         HStack {
@@ -66,7 +66,7 @@ struct SongView: View {
                 Image("Time Circle")
                     .frame(width: 15.33, height: 15.33)
 
-                Text(song.formattedDuration)
+                Text(song.formattedDuration ?? "Duration not available")
                     .font(Font.custom("Urbanist-Light", size: 14))
                     .kerning(0.2)
                     .foregroundColor(colorScheme == .light ? Color(red: 0.13, green: 0.13, blue: 0.13) : .white)
