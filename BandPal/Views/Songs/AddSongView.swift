@@ -147,7 +147,7 @@ struct AddSongView: View {
     }
     
     private func searchMusic(query: String) {
-        let apiKey = "f413b013a935a15593c9af6f4fd02cc2" // Replace with your Last.fm API key
+        let apiKey = "f79102a8569b4c0da58d2da5b0e4545a" // Replace with your Last.fm API key
         let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         let urlString = "http://ws.audioscrobbler.com/2.0/?method=track.search&track=\(encodedQuery)&api_key=\(apiKey)&format=json"
         
