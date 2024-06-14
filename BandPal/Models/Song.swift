@@ -1,14 +1,14 @@
 import Foundation
 
-struct Song: Identifiable {
+class Song: Identifiable, ObservableObject, Equatable {
     let id: UUID
     let title: String
     let artist: String
-    let albumArt: String?
-    let songDuration: Int?
+    @Published var albumArt: String?
+    @Published var songDuration: Int?
     
-    var formattedDuration: String? {
-        guard let duration = songDuration else { return nil }
+    var formattedDuration: String {
+        guard let duration = songDuration else { return "Duration not available" }
         let minutes = (duration / 1000) / 60
         let seconds = (duration / 1000) % 60
         return "\(minutes)m \(seconds)s"
@@ -20,5 +20,9 @@ struct Song: Identifiable {
         self.artist = artist
         self.albumArt = albumArt
         self.songDuration = songDuration
+    }
+    
+    static func == (lhs: Song, rhs: Song) -> Bool {
+        return lhs.id == rhs.id
     }
 }
