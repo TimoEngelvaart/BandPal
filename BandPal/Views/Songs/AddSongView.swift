@@ -62,6 +62,7 @@ struct AddSongView: View {
     @State private var searchQuery: String = ""
     @State private var searchResults: [Song] = []
     @State private var searchDebounce: DispatchWorkItem?
+    @State private var searchPerformed: Bool = false
     @Binding var songs: [Song]
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -83,46 +84,48 @@ struct AddSongView: View {
                 }
             
             // Search Results
-            if !searchResults.isEmpty {
-                List(searchResults, id: \.id) { song in
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text(song.title)
-                            Text(song.artist).font(.subheadline).foregroundColor(.gray)
-                        }
-                        Spacer()
-                        if let albumArt = song.albumArt, let url = URL(string: albumArt) {
-                            AsyncImage(url: url) { phase in
-                                switch phase {
-                                case .success(let image):
-                                    image
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 50, height: 50)
-                                case .failure:
-                                    Text("Failed to load")
-                                case .empty:
-                                    ProgressView()
-                                @unknown default:
-                                    EmptyView()
-                                }
+            if searchPerformed {
+                if searchResults.isEmpty {
+                    Text("No results found")
+                        .padding(.horizontal, 16)
+                } else {
+                    List(searchResults, id: \.id) { song in
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text(song.title)
+                                Text(song.artist).font(.subheadline).foregroundColor(.gray)
                             }
-                        } else {
-                            Image(systemName: "music.note")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 50, height: 50)
-                                .foregroundColor(.gray)
+                            Spacer()
+                            if let albumArt = song.albumArt, let url = URL(string: albumArt) {
+                                AsyncImage(url: url) { phase in
+                                    switch phase {
+                                    case .success(let image):
+                                        image
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 50, height: 50)
+                                    case .failure:
+                                        Text("Failed to load")
+                                    case .empty:
+                                        ProgressView()
+                                    @unknown default:
+                                        EmptyView()
+                                    }
+                                }
+                            } else {
+                                Image(systemName: "music.note")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 50, height: 50)
+                                    .foregroundColor(.gray)
+                            }
                         }
-                    }
-                    .onTapGesture {
-                        songs.append(song)
-                        self.presentationMode.wrappedValue.dismiss()
+                        .onTapGesture {
+                            songs.append(song)
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
                     }
                 }
-            } else {
-                Text("No results found")
-                    .padding(.horizontal, 16)
             }
             
             Spacer()
@@ -135,6 +138,7 @@ struct AddSongView: View {
         
         guard newValue.count >= 3 else {
             searchResults = []
+            searchPerformed = false
             return
         }
         
@@ -147,7 +151,7 @@ struct AddSongView: View {
     }
     
     private func searchMusic(query: String) {
-        let apiKey = "f79102a8569b4c0da58d2da5b0e4545a" // Replace with your Last.fm API key
+        let apiKey = "" // Replace with your Last.fm API key
         let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         let urlString = "http://ws.audioscrobbler.com/2.0/?method=track.search&track=\(encodedQuery)&api_key=\(apiKey)&format=json"
         
@@ -159,9 +163,15 @@ struct AddSongView: View {
                 return
             }
             
-            if let httpResponse = response as? HTTPURLResponse, !(200...299).contains(httpResponse.statusCode) {
+            if let httpResponse = response as? HTTPURLResponse {
                 print("Server returned status code: \(httpResponse.statusCode)")
-                return
+                if httpResponse.statusCode == 403 {
+                    print("Forbidden: Check your API key and permissions.")
+                    return
+                } else if !(200...299).contains(httpResponse.statusCode) {
+                    print("Server returned an error: \(httpResponse.statusCode)")
+                    return
+                }
             }
             
             if let data = data {
@@ -177,6 +187,7 @@ struct AddSongView: View {
                             self.fetchTrackInfo(for: song)
                             return song
                         }
+                        self.searchPerformed = true
                     }
                 } catch {
                     print("Error decoding JSON: \(error)")
@@ -188,7 +199,7 @@ struct AddSongView: View {
     }
     
     private func fetchTrackInfo(for song: Song) {
-        let apiKey = "" // Replace with your Last.fm API key
+        let apiKey = "f79102a8569b4c0da58d2da5b0e4545a" // Replace with your Last.fm API key
         guard let artist = song.artist.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
               let title = song.title.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
         
@@ -202,9 +213,15 @@ struct AddSongView: View {
                 return
             }
             
-            if let httpResponse = response as? HTTPURLResponse, !(200...299).contains(httpResponse.statusCode) {
+            if let httpResponse = response as? HTTPURLResponse {
                 print("Server returned status code: \(httpResponse.statusCode)")
-                return
+                if httpResponse.statusCode == 403 {
+                    print("Forbidden: Check your API key and permissions.")
+                    return
+                } else if !(200...299).contains(httpResponse.statusCode) {
+                    print("Server returned an error: \(httpResponse.statusCode)")
+                    return
+                }
             }
             
             if let data = data {
