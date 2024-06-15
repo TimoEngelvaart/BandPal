@@ -17,6 +17,7 @@
 		4058DA762AEC2A4300CDB1AC /* SetListHeaderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4058DA752AEC2A4300CDB1AC /* SetListHeaderTextView.swift */; };
 		4058DA782AEC2B4E00CDB1AC /* BottomBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4058DA772AEC2B4E00CDB1AC /* BottomBorderView.swift */; };
 		406A20882AF7F73F004D5214 /* SetlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406A20872AF7F73F004D5214 /* SetlistView.swift */; };
+		4071B7352C1DFE2E006C711C /* AddCustomSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4071B7342C1DFE2E006C711C /* AddCustomSongView.swift */; };
 		407F1E782C14C92B00D6AB41 /* SecondaryButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407F1E772C14C92B00D6AB41 /* SecondaryButtonView.swift */; };
 		407F1E7A2C14F4AC00D6AB41 /* CustomDatePickerModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407F1E792C14F4AC00D6AB41 /* CustomDatePickerModal.swift */; };
 		4086B5B32AFAD680003521A9 /* Setlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4086B5B22AFAD680003521A9 /* Setlist.swift */; };
@@ -45,6 +46,7 @@
 		4058DA752AEC2A4300CDB1AC /* SetListHeaderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListHeaderTextView.swift; sourceTree = "<group>"; };
 		4058DA772AEC2B4E00CDB1AC /* BottomBorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBorderView.swift; sourceTree = "<group>"; };
 		406A20872AF7F73F004D5214 /* SetlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetlistView.swift; sourceTree = "<group>"; };
+		4071B7342C1DFE2E006C711C /* AddCustomSongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCustomSongView.swift; sourceTree = "<group>"; };
 		407F1E772C14C92B00D6AB41 /* SecondaryButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButtonView.swift; sourceTree = "<group>"; };
 		407F1E792C14F4AC00D6AB41 /* CustomDatePickerModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePickerModal.swift; sourceTree = "<group>"; };
 		4086B5B22AFAD680003521A9 /* Setlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setlist.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				4058DA722AEBC5F700CDB1AC /* SongView.swift */,
 				4058DA752AEC2A4300CDB1AC /* SetListHeaderTextView.swift */,
 				40963B5D2AED584D00C47688 /* AddSongView.swift */,
+				4071B7342C1DFE2E006C711C /* AddCustomSongView.swift */,
 			);
 			path = Songs;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 				409A088D2AE9B4BB00761D16 /* BandPalApp.swift in Sources */,
 				40E923872AF97A9600CC3CA4 /* StatusView.swift in Sources */,
 				40963B5E2AED584D00C47688 /* AddSongView.swift in Sources */,
+				4071B7352C1DFE2E006C711C /* AddCustomSongView.swift in Sources */,
 				407F1E7A2C14F4AC00D6AB41 /* CustomDatePickerModal.swift in Sources */,
 				409A089D2AE9BC3800761D16 /* SongsView.swift in Sources */,
 				407F1E782C14C92B00D6AB41 /* SecondaryButtonView.swift in Sources */,

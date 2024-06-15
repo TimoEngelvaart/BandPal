@@ -1,5 +1,6 @@
 import SwiftUI
 
+// Define LastFMSearchResults in the scope
 struct LastFMSearchResults: Codable {
     let results: Results
 
@@ -28,6 +29,7 @@ struct LastFMSearchResults: Codable {
     }
 }
 
+// Define LastFMTrackInfo in the scope
 struct LastFMTrackInfo: Codable {
     let track: Track
 
@@ -127,6 +129,17 @@ struct AddSongView: View {
                     }
                 }
             }
+
+            // Button to navigate to custom song addition view
+            NavigationLink(destination: AddCustomSongView(songs: $songs)) {
+                Text("Add Custom Song")
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(8)
+                    .padding(.horizontal, 16)
+            }
             
             Spacer()
         }
@@ -151,13 +164,13 @@ struct AddSongView: View {
     }
     
     private func searchMusic(query: String) {
-        let apiKey = "" // Replace with your Last.fm API key
+        let apiKey = "f79102a8569b4c0da58d2da5b0e4545a" // Replace with your Last.fm API key
         let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         let urlString = "http://ws.audioscrobbler.com/2.0/?method=track.search&track=\(encodedQuery)&api_key=\(apiKey)&format=json"
         
         guard let url = URL(string: urlString) else { return }
         
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        let task: URLSessionDataTask = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
                 print("Network error: \(error)")
                 return
@@ -199,7 +212,7 @@ struct AddSongView: View {
     }
     
     private func fetchTrackInfo(for song: Song) {
-        let apiKey = "f79102a8569b4c0da58d2da5b0e4545a" // Replace with your Last.fm API key
+        let apiKey = "" // Replace with your Last.fm API key
         guard let artist = song.artist.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
               let title = song.title.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
         
@@ -207,7 +220,7 @@ struct AddSongView: View {
         
         guard let url = URL(string: urlString) else { return }
         
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        let task: URLSessionDataTask = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
                 print("Network error: \(error)")
                 return
