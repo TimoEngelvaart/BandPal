@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 //To make swipe action available
 extension UINavigationController: UIGestureRecognizerDelegate {
@@ -13,27 +14,46 @@ extension UINavigationController: UIGestureRecognizerDelegate {
 }
 
 struct SetlistView: View {
-    @State var setlists: [Setlist] = []
+    @Binding var selectedTab: Int
+    @Query(sort: \Setlist.date, order: .reverse) var setlists: [Setlist]
+    @Query private var bands: [Band]
+    @Environment(\.modelContext) private var modelContext
+    @AppStorage("activeBandID") private var activeBandID: String = ""
     @State private var activeSetlist: Setlist?
+    @State private var showBandList = false
     let globalHorizontalPadding: CGFloat = 16 // Use this value for consistency
-    
+
+    // Get active band
+    private var activeBand: Band? {
+        bands.first { $0.id.uuidString == activeBandID }
+    }
 
     var body: some View {
         NavigationStack {
-            VStack(alignment: .leading, spacing: 0) { // Alignment to leading for VStack
-                   SetListHeader(title: "Setlists", showBackButton: false, showFilter: false)
-                    .frame(maxWidth: .infinity, minHeight: 48, maxHeight: 48, alignment: .leading)
-                       .padding(.horizontal, globalHorizontalPadding)
-                       .padding(.bottom, 16)
-                
-                StatusView()
-                    .padding(.horizontal, globalHorizontalPadding)
+            VStack(alignment: .leading, spacing: 0) {
+                // Header with band settings
+                HStack {
+                    Text("Setlists")
+                        .font(.custom("Urbanist-SemiBold", size: 24))
+                    Spacer()
+                    Button {
+                        showBandList = true
+                    } label: {
+                        Image(systemName: "person.2")
+                            .font(.custom("Urbanist-Regular", size: 22))
+                            .foregroundColor(.primary)
+                    }
+                }
+                .frame(minHeight: 48, maxHeight: 48)
+                .padding(.horizontal, 16)
+                .padding(.top, 8)
+                .padding(.bottom, 24)
                   
 
                 List(setlists) { setlist in
                     ZStack {
                         // Invisible NavigationLink
-                        NavigationLink(destination: SongsView(songs: setlist.setlist)) {
+                        NavigationLink(destination: SongsView(setlist: setlist)) {
                               EmptyView()
                           }
                         .opacity(0) // Make the NavigationLink invisible
@@ -52,9 +72,7 @@ struct SetlistView: View {
                     .listRowSeparator(.hidden)
                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                         Button(role: .destructive) {
-                            if let index = setlists.firstIndex(where: { $0.id == setlist.id }) {
-                                setlists.remove(at: index)
-                            }
+                            modelContext.delete(setlist)
                         } label: {
                             Label("Delete", systemImage: "trash")
                         }
@@ -65,16 +83,19 @@ struct SetlistView: View {
                 .listStyle(PlainListStyle())
             }
           
-            NavigationLink(destination: AddSetlistView(setlists: $setlists)) {
+            NavigationLink(destination: AddSetlistView()) {
                 ButtonView(buttonText: "Add Setlist")
                     .padding(.horizontal, 16)
                     .padding(.bottom, 16)
             }
-            BottomBorderView()
+        }
+        .sheet(isPresented: $showBandList) {
+            BandListView()
         }
     }
 }
 
 #Preview {
-    SetlistView(setlists: [Setlist(title: "Voorste Venne", date: Date(), setlist: [Song(title: "Heaven", artist: "Avicii", albumArt: nil, songDuration: 30000), ]), Setlist(title: "De Mads", date: Date(), setlist: [Song(title: "Heaven", artist: "Avicii", albumArt: nil, songDuration: 300000), ])])
+    SetlistView(selectedTab: .constant(0))
+        .modelContainer(for: [Setlist.self, Song.self], inMemory: true)
 }

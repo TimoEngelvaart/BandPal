@@ -2,73 +2,96 @@ import SwiftUI
 import PhotosUI
 
 struct AddCustomSongView: View {
-    @Binding var songs: [Song]
+    @Binding var songs: [Song]?
     @Environment(\.presentationMode) var presentationMode
-    
+    @Environment(\.colorScheme) var colorScheme
+
     @State private var title: String = ""
     @State private var artist: String = ""
     @State private var duration: String = ""
     @State private var albumArt: UIImage? = nil
     @State private var isImagePickerPresented: Bool = false
-    
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("Add Custom Song")
-                .font(.largeTitle)
-                .padding(.bottom, 24)
-            
-            TextField("Song Title", text: $title)
-                .padding()
-                .background(Color(.systemGray6))
-                .cornerRadius(8)
-            
-            TextField("Artist", text: $artist)
-                .padding()
-                .background(Color(.systemGray6))
-                .cornerRadius(8)
-            
-            TextField("Duration (seconds)", text: $duration)
-                .padding()
-                .background(Color(.systemGray6))
-                .cornerRadius(8)
-                .keyboardType(.numberPad)
-            
-            if let albumArt = albumArt {
-                Image(uiImage: albumArt)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 100, height: 100)
-                    .clipShape(Circle())
-                    .onTapGesture {
-                        isImagePickerPresented = true
+        VStack(alignment: .leading, spacing: 0) {
+            // Header
+            SetListHeader(
+                title: "Add Custom Song",
+                showTitle: true,
+                showBackButton: true,
+                showSearchButton: false,
+                showFilter: false
+            )
+            .padding(.horizontal, 16)
+            .padding(.bottom, 24)
+
+            Spacer()
+
+            // Form
+            VStack(alignment: .leading, spacing: 16) {
+                InputView(placeholder: "Song Title", text: $title, onCommit: {})
+
+                InputView(placeholder: "Artist", text: $artist, onCommit: {})
+
+                InputView(placeholder: "Duration (seconds)", text: $duration, onCommit: {})
+
+                // Album Art Section
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Album Art")
+                        .font(.custom("Urbanist-SemiBold", size: 14))
+                        .foregroundColor(.secondary)
+
+                    if let albumArt = albumArt {
+                        HStack {
+                            Image(uiImage: albumArt)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 60, height: 60)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+
+                            Text("Tap to change")
+                                .font(.custom("Urbanist-Regular", size: 14))
+                                .foregroundColor(.secondary)
+
+                            Spacer()
+                        }
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            isImagePickerPresented = true
+                        }
+                    } else {
+                        Button(action: {
+                            isImagePickerPresented = true
+                        }) {
+                            HStack {
+                                Image(systemName: "photo")
+                                    .foregroundColor(.secondary)
+                                Text("Select Album Art")
+                                    .font(.custom("Urbanist-Regular", size: 14))
+                                    .foregroundColor(.secondary)
+                                Spacer()
+                            }
+                            .padding(16)
+                            .background(colorScheme == .light ? Color(red: 0.98, green: 0.98, blue: 0.98) : Color(red: 0.12, green: 0.13, blue: 0.16))
+                            .cornerRadius(16)
+                        }
                     }
-            } else {
-                Button(action: {
-                    isImagePickerPresented = true
-                }) {
-                    Text("Select Album Art")
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
                 }
             }
-            
+            .padding(.horizontal, 16)
+
             Spacer()
-            
+
+            // Add Button
             Button(action: {
                 addCustomSong()
             }) {
-                Text("Add Song")
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.green)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
+                ButtonView(buttonText: "Add Song")
             }
+            .padding(.horizontal, 16)
+            .padding(.bottom, 16)
         }
-        .padding()
+        .navigationBarBackButtonHidden(true)
         .sheet(isPresented: $isImagePickerPresented) {
             ImagePicker(image: $albumArt)
         }
@@ -81,7 +104,10 @@ struct AddCustomSongView: View {
         }
         
         let newSong = Song(title: title, artist: artist, albumArt: albumArt != nil ? albumArt!.toBase64() : nil, songDuration: duration * 1000)
-        songs.append(newSong)
+        if songs == nil {
+            songs = []
+        }
+        songs?.append(newSong)
         presentationMode.wrappedValue.dismiss()
     }
 }
@@ -137,8 +163,8 @@ extension UIImage {
 //}
 
 struct AddCustomSongView_Previews: PreviewProvider {
-    @State static var mockSongs = [Song]()
-    
+    @State static var mockSongs: [Song]? = []
+
     static var previews: some View {
         AddCustomSongView(songs: $mockSongs)
     }

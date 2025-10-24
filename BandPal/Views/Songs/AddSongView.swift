@@ -1,63 +1,16 @@
 import SwiftUI
 
-// Define LastFMSearchResults in the scope
-struct LastFMSearchResults: Codable {
-    let results: Results
-
-    struct Results: Codable {
-        let trackmatches: TrackMatches
-
-        struct TrackMatches: Codable {
-            let track: [Track]
-
-            struct Track: Codable {
-                let name: String
-                let artist: String
-                let image: [Image]
-
-                struct Image: Codable {
-                    let text: String
-                    let size: String
-
-                    enum CodingKeys: String, CodingKey {
-                        case text = "#text"
-                        case size
-                    }
-                }
-            }
-        }
-    }
+// iTunes Search API Response
+struct iTunesSearchResults: Codable {
+    let results: [iTunesTrack]
 }
 
-// Define LastFMTrackInfo in the scope
-struct LastFMTrackInfo: Codable {
-    let track: Track
-
-    struct Track: Codable {
-        let name: String
-        let artist: Artist
-        let duration: String? // Duration in milliseconds
-        let album: Album?
-
-        struct Artist: Codable {
-            let name: String
-        }
-
-        struct Album: Codable {
-            let title: String
-            let image: [Image]
-
-            struct Image: Codable {
-                let text: String
-                let size: String
-
-                enum CodingKeys: String, CodingKey {
-                    case text = "#text"
-                    case size
-                }
-            }
-        }
-    }
+struct iTunesTrack: Codable {
+    let trackName: String
+    let artistName: String
+    let artworkUrl100: String?
+    let trackTimeMillis: Int?
+    let collectionName: String?
 }
 
 struct AddSongView: View {
@@ -65,7 +18,7 @@ struct AddSongView: View {
     @State private var searchResults: [Song] = []
     @State private var searchDebounce: DispatchWorkItem?
     @State private var searchPerformed: Bool = false
-    @Binding var songs: [Song]
+    @Binding var songs: [Song]?
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -123,7 +76,10 @@ struct AddSongView: View {
                             }
                         }
                         .onTapGesture {
-                            songs.append(song)
+                            if songs == nil {
+                                songs = []
+                            }
+                            songs?.append(song)
                             self.presentationMode.wrappedValue.dismiss()
                         }
                     }
@@ -164,109 +120,44 @@ struct AddSongView: View {
     }
     
     private func searchMusic(query: String) {
-        let apiKey = "f79102a8569b4c0da58d2da5b0e4545a" // Replace with your Last.fm API key
         let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-        let urlString = "http://ws.audioscrobbler.com/2.0/?method=track.search&track=\(encodedQuery)&api_key=\(apiKey)&format=json"
-        
+        let urlString = "https://itunes.apple.com/search?term=\(encodedQuery)&media=music&entity=song&limit=25"
+
         guard let url = URL(string: urlString) else { return }
-        
-        let task: URLSessionDataTask = URLSession.shared.dataTask(with: url) { (data, response, error) in
+
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
                 print("Network error: \(error)")
                 return
             }
-            
-            if let httpResponse = response as? HTTPURLResponse {
-                print("Server returned status code: \(httpResponse.statusCode)")
-                if httpResponse.statusCode == 403 {
-                    print("Forbidden: Check your API key and permissions.")
-                    return
-                } else if !(200...299).contains(httpResponse.statusCode) {
-                    print("Server returned an error: \(httpResponse.statusCode)")
-                    return
-                }
-            }
-            
-            if let data = data {
-                do {
-                    let searchResults = try JSONDecoder().decode(LastFMSearchResults.self, from: data)
-                    DispatchQueue.main.async {
-                        self.searchResults = searchResults.results.trackmatches.track.map { track in
-                            let albumArt = track.image.first { $0.size == "large" }?.text
-                            let song = Song(title: track.name,
-                                            artist: track.artist,
-                                            albumArt: albumArt,
-                                            songDuration: nil) // Initially nil
-                            self.fetchTrackInfo(for: song)
-                            return song
-                        }
-                        self.searchPerformed = true
+
+            guard let data = data else { return }
+
+            do {
+                let searchResults = try JSONDecoder().decode(iTunesSearchResults.self, from: data)
+                DispatchQueue.main.async {
+                    self.searchResults = searchResults.results.map { track in
+                        Song(
+                            title: track.trackName,
+                            artist: track.artistName,
+                            albumArt: track.artworkUrl100,
+                            songDuration: track.trackTimeMillis
+                        )
                     }
-                } catch {
-                    print("Error decoding JSON: \(error)")
+                    self.searchPerformed = true
                 }
+            } catch {
+                print("Error decoding JSON: \(error)")
             }
         }
-        
-        task.resume()
-    }
-    
-    private func fetchTrackInfo(for song: Song) {
-        let apiKey = "" // Replace with your Last.fm API key
-        guard let artist = song.artist.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-              let title = song.title.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
-        
-        let urlString = "http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=\(apiKey)&artist=\(artist)&track=\(title)&format=json"
-        
-        guard let url = URL(string: urlString) else { return }
-        
-        let task: URLSessionDataTask = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let error = error {
-                print("Network error: \(error)")
-                return
-            }
-            
-            if let httpResponse = response as? HTTPURLResponse {
-                print("Server returned status code: \(httpResponse.statusCode)")
-                if httpResponse.statusCode == 403 {
-                    print("Forbidden: Check your API key and permissions.")
-                    return
-                } else if !(200...299).contains(httpResponse.statusCode) {
-                    print("Server returned an error: \(httpResponse.statusCode)")
-                    return
-                }
-            }
-            
-            if let data = data {
-                do {
-                    let trackInfo = try JSONDecoder().decode(LastFMTrackInfo.self, from: data)
-                    DispatchQueue.main.async {
-                        if let durationString = trackInfo.track.duration,
-                           let duration = Int(durationString) {
-                            if let index = self.searchResults.firstIndex(where: { $0.id == song.id }) {
-                                self.searchResults[index].songDuration = duration
-                            }
-                        }
-                        
-                        if let albumArt = trackInfo.track.album?.image.first(where: { $0.size == "large" })?.text {
-                            if let index = self.searchResults.firstIndex(where: { $0.id == song.id }) {
-                                self.searchResults[index].albumArt = albumArt
-                            }
-                        }
-                    }
-                } catch {
-                    print("Error decoding JSON: \(error)")
-                }
-            }
-        }
-        
+
         task.resume()
     }
 }
 
 struct AddSongView_Previews: PreviewProvider {
-    @State static var mockSongs = [Song]()
-    
+    @State static var mockSongs: [Song]? = []
+
     static var previews: some View {
         AddSongView(songs: $mockSongs)
     }

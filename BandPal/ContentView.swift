@@ -8,15 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selectedTab: Int = 0
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-                .font(Font.custom("Urbanist-Regular", size: 24))
+        VStack(spacing: 0) {
+            // Content area
+            if selectedTab == 0 {
+                SetlistView(selectedTab: $selectedTab)
+            } else {
+                RehearsalsView(selectedTab: $selectedTab)
+            }
+
+            // Custom bottom navigation
+            BottomBorderView(selectedTab: $selectedTab)
         }
-        .padding()
+        .ignoresSafeArea(.keyboard)
     }
 }
 

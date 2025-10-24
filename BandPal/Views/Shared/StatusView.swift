@@ -1,14 +1,14 @@
 import SwiftUI
 
 struct StatusView: View {
-    @State private var selectedStatus: String = "Upcoming"
-    let statuses = ["Upcoming", "Completed", "Cancelled"]
+    @Binding var selectedStatus: String
+    let statuses = ["Upcoming", "Completed"]
 
     var body: some View {
         HStack(alignment: .top, spacing: 0) {
             ForEach(statuses, id: \.self) { status in
                 Button(action: {
-                    self.selectedStatus = status
+                    selectedStatus = status
                 }) {
                     VStack(alignment: .center, spacing: 12) {
                         Text(status)
@@ -63,5 +63,5 @@ struct StatusColumn: View {
 
 // Preview
 #Preview {
-    StatusView()
+    StatusView(selectedStatus: .constant("Upcoming"))
 }

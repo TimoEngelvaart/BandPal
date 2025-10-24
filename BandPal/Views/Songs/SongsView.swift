@@ -1,13 +1,14 @@
 import SwiftUI
+import SwiftData
 import UniformTypeIdentifiers
 
 struct SongsView: View {
-    @State var songs: [Song] = []
+    @Bindable var setlist: Setlist
     @Environment(\.presentationMode) var presentationMode
     @State private var draggingItem: Song?
 
     var totalDurationInSeconds: Int {
-        songs.compactMap { $0.songDuration }.reduce(0, +) / 1000
+        (setlist.songs ?? []).compactMap { $0.songDuration }.reduce(0, +) / 1000
     }
 
     var formattedTotalDuration: String {
@@ -30,35 +31,37 @@ struct SongsView: View {
                 .padding(.bottom, 24)
 
             // Title
-            SetListHeaderTextView(numSongs: songs.count, totalDuration: totalDurationInSeconds)
+            SetListHeaderTextView(numSongs: setlist.songs?.count ?? 0, totalDuration: totalDurationInSeconds)
                 .padding(.bottom, 24)
 
             // ListItems
             List {
-                ForEach(songs) { song in
+                ForEach(setlist.songs ?? []) { song in
                     SongRow(song: song)
                         .onDrag {
                             self.draggingItem = song
                             return NSItemProvider(object: String(song.id.uuidString) as NSString)
                         }
-                        .onDrop(of: [UTType.text], delegate: SongDropDelegate(item: song, songs: $songs, draggingItem: $draggingItem))
+                        .onDrop(of: [UTType.text], delegate: SongDropDelegate(item: song, songs: $setlist.songs, draggingItem: $draggingItem))
                 }
                 .onMove(perform: move)
             }
             .listStyle(PlainListStyle())
             .padding(.horizontal, 16 - 16)
 
-            NavigationLink(destination: AddSongView(songs: $songs)) {
+            NavigationLink(destination: AddSongView(songs: $setlist.songs)) {
                 ButtonView(buttonText: "Add Song")
             }
-            BottomBorderView()
         }
         .padding(.horizontal, 16)
         .navigationBarBackButtonHidden(true)
     }
 
     func move(from source: IndexSet, to destination: Int) {
-        songs.move(fromOffsets: source, toOffset: destination)
+        if var songs = setlist.songs {
+            songs.move(fromOffsets: source, toOffset: destination)
+            setlist.songs = songs
+        }
     }
 }
 
@@ -77,7 +80,7 @@ struct SongRow: View {
 
 struct SongDropDelegate: DropDelegate {
     let item: Song
-    @Binding var songs: [Song]
+    @Binding var songs: [Song]?
     @Binding var draggingItem: Song?
 
     func performDrop(info: DropInfo) -> Bool {
@@ -86,19 +89,25 @@ struct SongDropDelegate: DropDelegate {
     }
 
     func dropEntered(info: DropInfo) {
-        guard let draggingItem = draggingItem else { return }
+        guard let draggingItem = draggingItem, var songArray = songs else { return }
 
         if draggingItem != item {
-            let fromIndex = songs.firstIndex(of: draggingItem)!
-            let toIndex = songs.firstIndex(of: item)!
+            guard let fromIndex = songArray.firstIndex(of: draggingItem),
+                  let toIndex = songArray.firstIndex(of: item) else { return }
 
             withAnimation {
-                songs.move(fromOffsets: IndexSet(integer: fromIndex), toOffset: toIndex > fromIndex ? toIndex + 1 : toIndex)
+                songArray.move(fromOffsets: IndexSet(integer: fromIndex), toOffset: toIndex > fromIndex ? toIndex + 1 : toIndex)
+                songs = songArray
             }
         }
     }
 }
 
 #Preview {
-    SongsView(songs: [Song(title: "test", artist: "test", albumArt: "Test", songDuration: 500000), Song(title: "test", artist: "test", albumArt: "Test", songDuration: 500000)])
+    let setlist = Setlist(title: "Test Setlist", date: Date(), songs: [
+        Song(title: "test", artist: "test", albumArt: "Test", songDuration: 500000),
+        Song(title: "test 2", artist: "test", albumArt: "Test", songDuration: 500000)
+    ])
+    return SongsView(setlist: setlist)
+        .modelContainer(for: [Setlist.self, Song.self], inMemory: true)
 }

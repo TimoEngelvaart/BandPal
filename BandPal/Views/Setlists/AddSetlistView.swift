@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 struct AddSetlistView: View {
     @State private var title: String = ""
@@ -6,7 +7,7 @@ struct AddSetlistView: View {
     @State private var validDate: Date?
     @State private var showDateError: Bool = false
     @State private var isDatePickerPresented: Bool = false
-    @Binding var setlists: [Setlist]
+    @Environment(\.modelContext) private var modelContext
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.colorScheme) var colorScheme: ColorScheme
@@ -38,8 +39,6 @@ struct AddSetlistView: View {
             Spacer()
 
             addButton
-
-            BottomBorderView()
         }
         .navigationBarBackButtonHidden(true)
         .onAppear {
@@ -108,8 +107,8 @@ struct AddSetlistView: View {
 
     private func addSetlist() {
         if let validDate = validDate, !title.isEmpty {
-            let newSetlist = Setlist(title: title, date: validDate, setlist: [])
-            setlists.append(newSetlist)
+            let newSetlist = Setlist(title: title, date: validDate, songs: [])
+            modelContext.insert(newSetlist)
             presentationMode.wrappedValue.dismiss()
 
             // Provide haptic feedback
@@ -147,5 +146,6 @@ struct AddSetlistView: View {
 }
 
 #Preview {
-    AddSetlistView(setlists: .constant([]))
+    AddSetlistView()
+        .modelContainer(for: [Setlist.self, Song.self], inMemory: true)
 }
