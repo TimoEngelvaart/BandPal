@@ -42,24 +42,25 @@ struct RehearsalDetailView: View {
                     .frame(maxWidth: .infinity, minHeight: 48, maxHeight: 48, alignment: .leading)
             }
             .padding(.horizontal, 16)
-            .padding(.bottom, 16)
+            .padding(.top, 8)
+            .padding(.bottom, 20)
 
             ScrollView {
-                VStack(alignment: .leading, spacing: 20) {
+                VStack(alignment: .leading, spacing: 24) {
                     // Rehearsal info card
                     rehearsalInfoCard
 
                     // New Songs section
-                    VStack(alignment: .leading, spacing: 16) {
+                    VStack(alignment: .leading, spacing: 12) {
                         HStack {
                             Text("New Songs")
-                                .font(.custom("Urbanist-SemiBold", size: 20))
+                                .font(.custom("Urbanist-Bold", size: 22))
                                 .foregroundColor(.primary)
                             Spacer()
                             Button(action: { showingAddNewSongs = true }) {
                                 Image(systemName: "plus.circle.fill")
                                     .font(.custom("Urbanist-Regular", size: 24))
-                                    .foregroundColor(.green)
+                                    .foregroundColor(Color(red: 0.35, green: 0.3, blue: 0.96))
                             }
                         }
 
@@ -84,21 +85,21 @@ struct RehearsalDetailView: View {
                             .listStyle(.plain)
                             .scrollContentBackground(.hidden)
                             .scrollDisabled(true)
-                            .frame(height: CGFloat((rehearsal.newSongs ?? []).count) * 100)
+                            .frame(height: CGFloat((rehearsal.newSongs ?? []).count) * 98)
                         }
                     }
 
                     // Old Songs section
-                    VStack(alignment: .leading, spacing: 16) {
+                    VStack(alignment: .leading, spacing: 12) {
                         HStack {
                             Text("Old Songs")
-                                .font(.custom("Urbanist-SemiBold", size: 20))
+                                .font(.custom("Urbanist-Bold", size: 22))
                                 .foregroundColor(.primary)
                             Spacer()
                             Button(action: { showingAddOldSongs = true }) {
                                 Image(systemName: "plus.circle.fill")
                                     .font(.custom("Urbanist-Regular", size: 24))
-                                    .foregroundColor(.secondary)
+                                    .foregroundColor(Color(red: 0.35, green: 0.3, blue: 0.96))
                             }
                         }
 
@@ -123,7 +124,7 @@ struct RehearsalDetailView: View {
                             .listStyle(.plain)
                             .scrollContentBackground(.hidden)
                             .scrollDisabled(true)
-                            .frame(height: CGFloat((rehearsal.oldSongs ?? []).count) * 100)
+                            .frame(height: CGFloat((rehearsal.oldSongs ?? []).count) * 98)
                         }
                     }
                 }
@@ -157,112 +158,114 @@ struct RehearsalDetailView: View {
     }
 
     private var rehearsalInfoCard: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: 14) {
             // Absent members
-            HStack {
-                HStack(spacing: 8) {
-                    Image(systemName: "person.slash")
-                        .font(.custom("Urbanist-Regular", size: 16))
-                        .foregroundColor(.orange)
-                    Text((rehearsal.absentMembers ?? []).isEmpty ? "No absences" : (rehearsal.absentMembers ?? []).map { $0.name }.joined(separator: ", "))
-                        .font(.custom("Urbanist-Regular", size: 14))
-                        .foregroundColor(.secondary)
-                }
+            HStack(alignment: .center, spacing: 12) {
+                Image(systemName: "person.slash")
+                    .font(.system(size: 18))
+                    .foregroundColor(.orange)
+                    .frame(width: 24, alignment: .center)
+                Text((rehearsal.absentMembers ?? []).isEmpty ? "No absences" : (rehearsal.absentMembers ?? []).map { $0.name }.joined(separator: ", "))
+                    .font(.custom("Urbanist-Medium", size: 15))
+                    .foregroundColor(colorScheme == .dark ? .white.opacity(0.9) : .black.opacity(0.8))
+                    .lineLimit(2)
                 Spacer()
                 Button(action: { showingEditAbsent = true }) {
                     Image(systemName: "pencil.circle.fill")
-                        .font(.custom("Urbanist-Regular", size: 20))
-                        .foregroundColor(.blue)
+                        .font(.system(size: 22))
+                        .foregroundColor(Color(red: 0.35, green: 0.3, blue: 0.96))
                 }
             }
 
             Divider()
+                .background(colorScheme == .dark ? Color.white.opacity(0.1) : Color.black.opacity(0.1))
 
             // Notes
-            HStack(alignment: .top) {
-                HStack(spacing: 8) {
-                    Image(systemName: "note.text")
-                        .font(.custom("Urbanist-Regular", size: 16))
-                        .foregroundColor(.blue)
-                    if let notes = rehearsal.notes, !notes.isEmpty {
-                        Text(notes)
-                            .font(.custom("Urbanist-Regular", size: 14))
-                            .foregroundColor(.secondary)
-                    } else {
-                        Text("No notes")
-                            .font(.custom("Urbanist-Regular", size: 14))
-                            .foregroundColor(.secondary.opacity(0.6))
-                            .italic()
-                    }
+            HStack(alignment: .center, spacing: 12) {
+                Image(systemName: "note.text")
+                    .font(.system(size: 18))
+                    .foregroundColor(Color(red: 0.35, green: 0.3, blue: 0.96))
+                    .frame(width: 24, alignment: .center)
+                if let notes = rehearsal.notes, !notes.isEmpty {
+                    Text(notes)
+                        .font(.custom("Urbanist-Medium", size: 15))
+                        .foregroundColor(colorScheme == .dark ? .white.opacity(0.9) : .black.opacity(0.8))
+                        .lineLimit(2)
+                } else {
+                    Text("No notes")
+                        .font(.custom("Urbanist-Medium", size: 15))
+                        .foregroundColor(.secondary.opacity(0.6))
+                        .italic()
                 }
                 Spacer()
                 Button(action: { showingEditNotes = true }) {
                     Image(systemName: "pencil.circle.fill")
-                        .font(.custom("Urbanist-Regular", size: 20))
-                        .foregroundColor(.blue)
+                        .font(.system(size: 22))
+                        .foregroundColor(Color(red: 0.35, green: 0.3, blue: 0.96))
                 }
             }
 
             Divider()
+                .background(colorScheme == .dark ? Color.white.opacity(0.1) : Color.black.opacity(0.1))
 
             // Recording Link
-            HStack(alignment: .top) {
-                HStack(spacing: 8) {
-                    Image(systemName: "mic.fill")
-                        .font(.custom("Urbanist-Regular", size: 16))
-                        .foregroundColor(.red)
-                    if let recordingLink = rehearsal.recordingLink, !recordingLink.isEmpty {
-                        if let url = URL(string: recordingLink) {
-                            Link(destination: url) {
-                                Text("Open Recording")
-                                    .font(.custom("Urbanist-Regular", size: 14))
-                                    .foregroundColor(.blue)
-                                    .underline()
-                            }
-                        } else {
-                            Text("Invalid link")
-                                .font(.custom("Urbanist-Regular", size: 14))
-                                .foregroundColor(.red.opacity(0.6))
-                                .italic()
+            HStack(alignment: .center, spacing: 12) {
+                Image(systemName: "mic.fill")
+                    .font(.system(size: 18))
+                    .foregroundColor(.red)
+                    .frame(width: 24, alignment: .center)
+                if let recordingLink = rehearsal.recordingLink, !recordingLink.isEmpty {
+                    if let url = URL(string: recordingLink) {
+                        Link(destination: url) {
+                            Text("Open Recording")
+                                .font(.custom("Urbanist-Medium", size: 15))
+                                .foregroundColor(Color(red: 0.35, green: 0.3, blue: 0.96))
+                                .underline()
                         }
                     } else {
-                        Text("No recording")
-                            .font(.custom("Urbanist-Regular", size: 14))
-                            .foregroundColor(.secondary.opacity(0.6))
+                        Text("Invalid link")
+                            .font(.custom("Urbanist-Medium", size: 15))
+                            .foregroundColor(.red.opacity(0.6))
                             .italic()
                     }
+                } else {
+                    Text("No recording")
+                        .font(.custom("Urbanist-Medium", size: 15))
+                        .foregroundColor(.secondary.opacity(0.6))
+                        .italic()
                 }
                 Spacer()
                 Button(action: { showingEditRecordingLink = true }) {
                     Image(systemName: "pencil.circle.fill")
-                        .font(.custom("Urbanist-Regular", size: 20))
-                        .foregroundColor(.blue)
+                        .font(.system(size: 22))
+                        .foregroundColor(Color(red: 0.35, green: 0.3, blue: 0.96))
                 }
             }
         }
-        .padding(20)
+        .padding(.horizontal, 18)
+        .padding(.vertical, 16)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(colorScheme == .dark ? Color(red: 0.12, green: 0.13, blue: 0.16) : .white)
-        .cornerRadius(20)
-        .shadow(color: Color(red: 0.02, green: 0.02, blue: 0.06).opacity(0.05), radius: 30, x: 0, y: 4)
+        .cornerRadius(16)
+        .shadow(color: Color(red: 0.02, green: 0.02, blue: 0.06).opacity(0.08), radius: 20, x: 0, y: 2)
     }
 
     private func emptyStateView(message: String) -> some View {
         HStack {
             Spacer()
-            VStack(spacing: 8) {
+            VStack(spacing: 10) {
                 Image(systemName: "music.note")
-                    .font(.custom("Urbanist-Regular", size: 30))
-                    .foregroundColor(.secondary.opacity(0.5))
+                    .font(.system(size: 32))
+                    .foregroundColor(Color(red: 0.35, green: 0.3, blue: 0.96).opacity(0.3))
                 Text(message)
-                    .font(.custom("Urbanist-Regular", size: 14))
-                    .foregroundColor(.secondary)
+                    .font(.custom("Urbanist-Medium", size: 14))
+                    .foregroundColor(.secondary.opacity(0.7))
             }
-            .padding(.vertical, 32)
+            .padding(.vertical, 40)
             Spacer()
         }
-        .background(colorScheme == .dark ? Color(red: 0.12, green: 0.13, blue: 0.16).opacity(0.5) : Color(red: 0.98, green: 0.98, blue: 0.98))
-        .cornerRadius(16)
+        .background(colorScheme == .dark ? Color(red: 0.12, green: 0.13, blue: 0.16).opacity(0.3) : Color(red: 0.35, green: 0.3, blue: 0.96).opacity(0.03))
+        .cornerRadius(12)
     }
 
     private func removeNewSong(_ song: Song) {
