@@ -8,6 +8,8 @@ struct AddSetlistView: View {
     @State private var showDateError: Bool = false
     @State private var isDatePickerPresented: Bool = false
     @Environment(\.modelContext) private var modelContext
+    @Query private var bands: [Band]
+    @AppStorage("activeBandID") private var activeBandID: String = ""
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.colorScheme) var colorScheme: ColorScheme
@@ -109,6 +111,19 @@ struct AddSetlistView: View {
         if let validDate = validDate, !title.isEmpty {
             let newSetlist = Setlist(title: title, date: validDate, songs: [])
             modelContext.insert(newSetlist)
+
+            // Sync to CloudKit if there's an active band
+            if let activeBand = bands.first(where: { $0.id.uuidString == activeBandID }) {
+                Task {
+                    do {
+                        try await BandSharingManager.shared.syncSetlist(newSetlist, for: activeBand)
+                        print("✅ Setlist synced to CloudKit")
+                    } catch {
+                        print("⚠️ Could not sync setlist: \(error.localizedDescription)")
+                    }
+                }
+            }
+
             presentationMode.wrappedValue.dismiss()
 
             // Provide haptic feedback
