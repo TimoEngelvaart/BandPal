@@ -11,11 +11,11 @@ struct SongView: View {
             songDetailsView
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding([.leading, .trailing], 18)
-        .padding(.vertical, 14)
+        .padding([.leading, .trailing], 12)
+        .padding(.vertical, 10)
         .background(colorScheme == .dark ? Color(red: 0.12, green: 0.13, blue: 0.16) : .white)
-        .cornerRadius(28)
-        .shadow(color: Color(red: 0.02, green: 0.02, blue: 0.06).opacity(0.05), radius: 30, x: 0, y: 4)
+        .cornerRadius(16)
+        .shadow(color: Color(red: 0.02, green: 0.02, blue: 0.06).opacity(0.05), radius: 20, x: 0, y: 2)
 
     }
 
@@ -27,53 +27,55 @@ struct SongView: View {
                     case .success(let image):
                         image.resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: 120, height: 120)
+                            .frame(width: 70, height: 70)
                             .clipped()
-                            .cornerRadius(20)
+                            .cornerRadius(12)
                     case .empty:
                         ProgressView()
-                            .frame(width: 120, height: 120)
+                            .frame(width: 70, height: 70)
                     default:
                         Rectangle()
                             .foregroundColor(.clear)
-                            .frame(width: 120, height: 120)
+                            .frame(width: 70, height: 70)
                     }
                 }
             } else {
                 Rectangle()
                     .foregroundColor(.clear)
-                    .frame(width: 120, height: 120)
+                    .frame(width: 70, height: 70)
             }
         }
     }
 
     private var songDetailsView: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 6) {
             Text(song.title)
-                .font(Font.custom("Urbanist-SemiBold", size: 20))
+                .font(Font.custom("Urbanist-SemiBold", size: 16))
                 .fontWeight(.bold)
                 .foregroundColor(colorScheme == .light ? Color(red: 0.13, green: 0.13, blue: 0.13) : .white)
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .lineLimit(1)
 
             Text(song.artist)
-                .font(Font.custom("Urbanist-Regular", size: 14))
+                .font(Font.custom("Urbanist-Regular", size: 13))
                 .fontWeight(.semibold)
                 .kerning(0.2)
                 .foregroundColor(Color(red: 0.35, green: 0.3, blue: 0.96))
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .lineLimit(1)
 
-            HStack {
+            HStack(spacing: 4) {
                 Image("Time Circle")
-                    .frame(width: 15.33, height: 15.33)
+                    .frame(width: 12, height: 12)
 
                 Text(song.formattedDuration)
-                    .font(Font.custom("Urbanist-Light", size: 14))
+                    .font(Font.custom("Urbanist-Light", size: 12))
                     .kerning(0.2)
                     .foregroundColor(colorScheme == .light ? Color(red: 0.13, green: 0.13, blue: 0.13) : .white)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
-        .padding(.horizontal, 32)
+        .padding(.horizontal, 12)
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 }

@@ -56,7 +56,8 @@ struct RehearsalsView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        NavigationStack {
+            VStack(alignment: .leading, spacing: 0) {
             // Header with search and settings icons
             if !isSearching {
                 HStack {
@@ -191,6 +192,7 @@ struct RehearsalsView: View {
                     }
                 }
             }
+        }
         }
     }
 

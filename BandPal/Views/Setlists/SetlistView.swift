@@ -21,11 +21,25 @@ struct SetlistView: View {
     @AppStorage("activeBandID") private var activeBandID: String = ""
     @State private var activeSetlist: Setlist?
     @State private var showBandList = false
+    @State private var selectedStatus: String = "Upcoming"
     let globalHorizontalPadding: CGFloat = 16 // Use this value for consistency
 
     // Get active band
     private var activeBand: Band? {
         bands.first { $0.id.uuidString == activeBandID }
+    }
+
+    // Filter setlists by status
+    private var filteredSetlists: [Setlist] {
+        let now = Date()
+        switch selectedStatus {
+        case "Upcoming":
+            return setlists.filter { $0.date >= now }
+        case "Completed":
+            return setlists.filter { $0.date < now }
+        default:
+            return setlists
+        }
     }
 
     var body: some View {
@@ -48,9 +62,13 @@ struct SetlistView: View {
                 .padding(.horizontal, 16)
                 .padding(.top, 8)
                 .padding(.bottom, 24)
-                  
 
-                List(setlists) { setlist in
+                // Status tabs
+                StatusView(selectedStatus: $selectedStatus)
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, 24)
+
+                List(filteredSetlists) { setlist in
                     ZStack {
                         // Invisible NavigationLink
                         NavigationLink(destination: SongsView(setlist: setlist)) {

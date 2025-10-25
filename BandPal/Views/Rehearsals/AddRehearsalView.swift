@@ -3,7 +3,7 @@ import SwiftData
 
 struct AddRehearsalView: View {
     @Environment(\.modelContext) private var modelContext
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.dismiss) private var dismiss
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     @Query private var bands: [Band]
     @AppStorage("activeBandID") private var activeBandID: String = ""
@@ -375,7 +375,7 @@ struct AddRehearsalView: View {
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.success)
 
-        presentationMode.wrappedValue.dismiss()
+        dismiss()
     }
 
     private func formattedDate(_ date: Date) -> String {
