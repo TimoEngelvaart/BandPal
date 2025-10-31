@@ -259,8 +259,26 @@ class BandSharingManager: ObservableObject {
         record["date"] = rehearsal.date as CKRecordValue
         record["notes"] = rehearsal.notes as CKRecordValue?
 
+        // Store new songs as JSON
+        if let newSongs = rehearsal.newSongs {
+            let newSongsData = try JSONEncoder().encode(newSongs.map { SongData(from: $0) })
+            record["newSongsData"] = String(data: newSongsData, encoding: .utf8) as CKRecordValue?
+        }
+
+        // Store old songs as JSON
+        if let oldSongs = rehearsal.oldSongs {
+            let oldSongsData = try JSONEncoder().encode(oldSongs.map { SongData(from: $0) })
+            record["oldSongsData"] = String(data: oldSongsData, encoding: .utf8) as CKRecordValue?
+        }
+
+        // Store absent members as JSON
+        if let absentMembers = rehearsal.absentMembers {
+            let membersData = try JSONEncoder().encode(absentMembers.map { MemberData(from: $0) })
+            record["absentMembersData"] = String(data: membersData, encoding: .utf8) as CKRecordValue?
+        }
+
         _ = try await publicDatabase.save(record)
-        print("✅ Synced rehearsal to CloudKit")
+        print("✅ Synced rehearsal to CloudKit with songs and members")
     }
 
     /// Fetch all rehearsals for a band
@@ -289,21 +307,47 @@ class BandSharingManager: ObservableObject {
                 continue
             }
 
+            // Decode songs and members
+            var newSongs: [Song] = []
+            var oldSongs: [Song] = []
+            var absentMembers: [BandMember] = []
+
+            // Decode new songs
+            if let newSongsJSON = record["newSongsData"] as? String,
+               let newSongsData = newSongsJSON.data(using: .utf8),
+               let decodedNewSongs = try? JSONDecoder().decode([SongData].self, from: newSongsData) {
+                newSongs = decodedNewSongs.map { $0.toSong(context: context) }
+            }
+
+            // Decode old songs
+            if let oldSongsJSON = record["oldSongsData"] as? String,
+               let oldSongsData = oldSongsJSON.data(using: .utf8),
+               let decodedOldSongs = try? JSONDecoder().decode([SongData].self, from: oldSongsData) {
+                oldSongs = decodedOldSongs.map { $0.toSong(context: context) }
+            }
+
+            // Decode absent members
+            if let membersJSON = record["absentMembersData"] as? String,
+               let membersData = membersJSON.data(using: .utf8),
+               let decodedMembers = try? JSONDecoder().decode([MemberData].self, from: membersData) {
+                absentMembers = decodedMembers.map { $0.toMember(context: context) }
+            }
+
             // Create new rehearsal
             let newRehearsal = Rehearsal(
                 id: uuid,
                 date: date,
-                absentMembers: [],
+                absentMembers: absentMembers,
                 notes: record["notes"] as? String,
-                newSongs: [],
-                oldSongs: []
+                newSongs: newSongs,
+                oldSongs: oldSongs
             )
             newRehearsal.band = band
             context.insert(newRehearsal)
         }
 
         try context.save()
-        print("✅ Fetched rehearsals from CloudKit")
+        print("✅ Fetched rehearsals from CloudKit with songs and members")
     }
 
     // MARK: - Subscription Setup
@@ -400,5 +444,37 @@ struct SongData: Codable {
         )
         context.insert(song)
         return song
+    }
+}
+
+// Helper struct for serializing band members
+struct MemberData: Codable {
+    let id: String
+    let name: String
+    let instrument: String?
+
+    init(from member: BandMember) {
+        self.id = member.id.uuidString
+        self.name = member.name
+        self.instrument = member.instrument
+    }
+
+    func toMember(context: ModelContext) -> BandMember {
+        // Check if member already exists
+        let uuid = UUID(uuidString: id) ?? UUID()
+
+        // Try to fetch existing member
+        if let existingMember = (try? context.fetch(FetchDescriptor<BandMember>()))?.first(where: { $0.id == uuid }) {
+            return existingMember
+        }
+
+        // Create new member
+        let member = BandMember(
+            id: uuid,
+            name: name,
+            instrument: instrument ?? ""
+        )
+        context.insert(member)
+        return member
     }
 }
