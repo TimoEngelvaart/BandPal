@@ -6,47 +6,60 @@ struct CustomDatePickerModal: View {
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
+            // Header
             HStack {
+                Text("Select Date")
+                    .font(.custom("Urbanist-SemiBold", size: 20))
+                    .foregroundColor(colorScheme == .light ? Color(red: 0.13, green: 0.13, blue: 0.13) : .white)
+
                 Spacer()
+
                 Button(action: {
-                    withAnimation {
+                    withAnimation(.easeInOut(duration: 0.25)) {
                         isPresented = false
                     }
                 }) {
-                    Image(systemName: "xmark")
-                        .padding()
-                        .foregroundColor(colorScheme == .dark ? .white : .black)
+                    Image(systemName: "xmark.circle.fill")
+                        .font(.system(size: 24))
+                        .foregroundColor(.secondary)
                 }
             }
+            .padding(.horizontal, 20)
+            .padding(.top, 20)
+            .padding(.bottom, 16)
 
+            // Date Picker - using .id() to prevent jumping
             DatePicker(
                 "",
                 selection: $selectedDate,
                 displayedComponents: .date
             )
-            .datePickerStyle(GraphicalDatePickerStyle())
+            .datePickerStyle(.graphical)
             .labelsHidden()
-            .padding()
-            .background(colorScheme == .dark ? Color.black : Color.white)
-            .cornerRadius(16)
+            .tint(Color(red: 0.35, green: 0.3, blue: 0.96))
+            .id(selectedDate) // Forces view recreation to prevent jump
+            .padding(.horizontal, 16)
+            .frame(height: 350)
+            .clipped()
 
+            // Set Button
             Button(action: {
-                withAnimation {
+                withAnimation(.easeInOut(duration: 0.25)) {
                     isPresented = false
                 }
             }) {
-                ButtonView(buttonText: "Set")
+                ButtonView(buttonText: "Set Date")
             }
-            .padding()
-            Spacer()
+            .padding(.horizontal, 20)
+            .padding(.top, 16)
+            .padding(.bottom, 20)
         }
-        .background(colorScheme == .dark ? Color.black : Color.white)
-        .cornerRadius(16)
-        .padding()
-        .shadow(color: colorScheme == .dark ? Color.white.opacity(0.1) : Color.black.opacity(0.1), radius: 10, x: 0, y: 10)
-        .frame(maxHeight: .infinity) // Ensures the modal reaches the bottom
-        .ignoresSafeArea(.container, edges: .bottom) // Ensures it uses the full height
+        .background(colorScheme == .dark ? Color(red: 0.12, green: 0.13, blue: 0.16) : Color.white)
+        .cornerRadius(20)
+        .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 10)
+        .padding(.horizontal, 20)
+        .frame(maxWidth: .infinity)
     }
 }
 
