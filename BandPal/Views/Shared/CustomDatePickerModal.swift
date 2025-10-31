@@ -7,27 +7,34 @@ struct CustomDatePickerModal: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            // Header
-            HStack {
-                Text("Select Date")
-                    .font(.custom("Urbanist-SemiBold", size: 20))
-                    .foregroundColor(colorScheme == .light ? Color(red: 0.13, green: 0.13, blue: 0.13) : .white)
+            // Header with drag indicator
+            VStack(spacing: 12) {
+                // Drag indicator
+                RoundedRectangle(cornerRadius: 3)
+                    .fill(Color.secondary.opacity(0.3))
+                    .frame(width: 40, height: 5)
+                    .padding(.top, 12)
 
-                Spacer()
+                HStack {
+                    Text("Select Date")
+                        .font(.custom("Urbanist-Bold", size: 22))
+                        .foregroundColor(colorScheme == .light ? Color(red: 0.13, green: 0.13, blue: 0.13) : .white)
 
-                Button(action: {
-                    withAnimation(.easeInOut(duration: 0.25)) {
-                        isPresented = false
+                    Spacer()
+
+                    Button(action: {
+                        withAnimation(.easeInOut(duration: 0.25)) {
+                            isPresented = false
+                        }
+                    }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.system(size: 28))
+                            .foregroundColor(.secondary.opacity(0.6))
                     }
-                }) {
-                    Image(systemName: "xmark.circle.fill")
-                        .font(.system(size: 24))
-                        .foregroundColor(.secondary)
                 }
+                .padding(.horizontal, 24)
             }
-            .padding(.horizontal, 20)
-            .padding(.top, 20)
-            .padding(.bottom, 16)
+            .padding(.bottom, 20)
 
             // Date Picker - using .id() to prevent jumping
             DatePicker(
@@ -39,7 +46,7 @@ struct CustomDatePickerModal: View {
             .labelsHidden()
             .tint(Color(red: 0.35, green: 0.3, blue: 0.96))
             .id(selectedDate) // Forces view recreation to prevent jump
-            .padding(.horizontal, 16)
+            .padding(.horizontal, 20)
             .frame(height: 350)
             .clipped()
 
@@ -51,14 +58,14 @@ struct CustomDatePickerModal: View {
             }) {
                 ButtonView(buttonText: "Set Date")
             }
-            .padding(.horizontal, 20)
-            .padding(.top, 16)
-            .padding(.bottom, 20)
+            .padding(.horizontal, 24)
+            .padding(.top, 20)
+            .padding(.bottom, 24)
         }
         .background(colorScheme == .dark ? Color(red: 0.12, green: 0.13, blue: 0.16) : Color.white)
-        .cornerRadius(20)
-        .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 10)
-        .padding(.horizontal, 20)
+        .cornerRadius(24)
+        .shadow(color: Color.black.opacity(0.3), radius: 30, x: 0, y: -5)
+        .padding(.horizontal, 16)
         .frame(maxWidth: .infinity)
     }
 }

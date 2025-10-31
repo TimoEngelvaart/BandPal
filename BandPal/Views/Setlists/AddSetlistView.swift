@@ -52,16 +52,14 @@ struct AddSetlistView: View {
         .overlay(
             ZStack {
                 if isDatePickerPresented {
-                    VStack(spacing: 0) {
-                        Color.black.opacity(0.3)
-                            .ignoresSafeArea(edges: .top)
-                            .onTapGesture {
-                                withAnimation {
-                                    isDatePickerPresented = false
-                                }
+                    // Darker overlay
+                    Color.black.opacity(0.5)
+                        .ignoresSafeArea()
+                        .onTapGesture {
+                            withAnimation {
+                                isDatePickerPresented = false
                             }
-                        Spacer()
-                    }
+                        }
 
                     CustomDatePickerModal(isPresented: $isDatePickerPresented, selectedDate: $selectedDate)
                         .transition(.move(edge: .bottom))
