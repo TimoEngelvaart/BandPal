@@ -97,9 +97,11 @@ struct SetlistView: View {
                             Image(systemName: "trash")
                         }
                     }
-                
+
                 }
-                
+                .refreshable {
+                    await syncSetlists()
+                }
                 .listStyle(PlainListStyle())
             }
           
@@ -111,6 +113,17 @@ struct SetlistView: View {
         }
         .sheet(isPresented: $showBandList) {
             BandListView()
+        }
+    }
+
+    private func syncSetlists() async {
+        guard let activeBand = activeBand else { return }
+
+        do {
+            try await BandSharingManager.shared.performFullSync(for: activeBand, context: modelContext)
+            print("✅ Manual sync completed")
+        } catch {
+            print("⚠️ Manual sync failed: \(error.localizedDescription)")
         }
     }
 }

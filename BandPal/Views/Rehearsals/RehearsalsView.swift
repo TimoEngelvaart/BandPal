@@ -165,6 +165,9 @@ struct RehearsalsView: View {
                     }
                 }
             }
+            .refreshable {
+                await syncRehearsals()
+            }
             .listStyle(.plain)
             .scrollContentBackground(.hidden)
 
@@ -200,6 +203,17 @@ struct RehearsalsView: View {
 
     private func deleteRehearsal(_ rehearsal: Rehearsal) {
         modelContext.delete(rehearsal)
+    }
+
+    private func syncRehearsals() async {
+        guard let activeBand = activeBand else { return }
+
+        do {
+            try await BandSharingManager.shared.performFullSync(for: activeBand, context: modelContext)
+            print("✅ Manual sync completed")
+        } catch {
+            print("⚠️ Manual sync failed: \(error.localizedDescription)")
+        }
     }
 }
 
