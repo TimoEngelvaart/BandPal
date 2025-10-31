@@ -88,12 +88,7 @@ struct AddSongView: View {
 
             // Button to navigate to custom song addition view
             NavigationLink(destination: AddCustomSongView(songs: $songs)) {
-                Text("Add Custom Song")
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
+                ButtonView(buttonText: "Add Custom Song")
                     .padding(.horizontal, 16)
             }
             

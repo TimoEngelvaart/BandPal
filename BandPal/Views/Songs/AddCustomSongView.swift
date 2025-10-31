@@ -37,41 +37,55 @@ struct AddCustomSongView: View {
 
                 // Album Art Section
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Album Art")
-                        .font(.custom("Urbanist-SemiBold", size: 14))
+                    Text("Album Art (Optional)")
+                        .font(.custom("Urbanist-SemiBold", size: 12))
                         .foregroundColor(.secondary)
 
-                    if let albumArt = albumArt {
-                        HStack {
-                            Image(uiImage: albumArt)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 60, height: 60)
-                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                    Button(action: {
+                        isImagePickerPresented = true
+                    }) {
+                        if let albumArt = albumArt {
+                            HStack(spacing: 12) {
+                                Image(uiImage: albumArt)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 60, height: 60)
+                                    .clipShape(RoundedRectangle(cornerRadius: 8))
 
-                            Text("Tap to change")
-                                .font(.custom("Urbanist-Regular", size: 14))
-                                .foregroundColor(.secondary)
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text("Album art selected")
+                                        .font(.custom("Urbanist-SemiBold", size: 14))
+                                        .foregroundColor(colorScheme == .light ? Color(red: 0.13, green: 0.13, blue: 0.13) : Color(red: 0.62, green: 0.62, blue: 0.62))
 
-                            Spacer()
-                        }
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            isImagePickerPresented = true
-                        }
-                    } else {
-                        Button(action: {
-                            isImagePickerPresented = true
-                        }) {
-                            HStack {
+                                    Text("Tap to change")
+                                        .font(.custom("Urbanist-Regular", size: 12))
+                                        .foregroundColor(.secondary)
+                                }
+
+                                Spacer()
+
                                 Image(systemName: "photo")
                                     .foregroundColor(.secondary)
+                                    .font(.custom("Urbanist-Regular", size: 16))
+                            }
+                            .padding(.horizontal, 16)
+                            .frame(height: 76)
+                            .background(colorScheme == .light ? Color(red: 0.98, green: 0.98, blue: 0.98) : Color(red: 0.12, green: 0.13, blue: 0.16))
+                            .cornerRadius(16)
+                        } else {
+                            HStack {
+                                Image(systemName: "photo")
+                                    .foregroundColor(colorScheme == .light ? Color(red: 0.13, green: 0.13, blue: 0.13).opacity(0.4) : Color(red: 0.62, green: 0.62, blue: 0.62).opacity(0.6))
+                                    .font(.custom("Urbanist-Regular", size: 16))
+
                                 Text("Select Album Art")
-                                    .font(.custom("Urbanist-Regular", size: 14))
-                                    .foregroundColor(.secondary)
+                                    .font(.custom("Urbanist-SemiBold", size: 14))
+                                    .foregroundColor(colorScheme == .light ? Color(red: 0.13, green: 0.13, blue: 0.13).opacity(0.4) : Color(red: 0.62, green: 0.62, blue: 0.62).opacity(0.6))
+
                                 Spacer()
                             }
-                            .padding(16)
+                            .padding(.horizontal, 16)
+                            .frame(height: 56)
                             .background(colorScheme == .light ? Color(red: 0.98, green: 0.98, blue: 0.98) : Color(red: 0.12, green: 0.13, blue: 0.16))
                             .cornerRadius(16)
                         }
