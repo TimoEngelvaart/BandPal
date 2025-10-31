@@ -26,14 +26,16 @@ struct RehearsalsView: View {
     }
 
     var filteredRehearsals: [Rehearsal] {
-        let now = Date()
+        // Get today at midnight for accurate date comparison
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
         var filtered: [Rehearsal]
 
         switch selectedStatus {
         case "Upcoming":
-            filtered = rehearsals.filter { $0.date >= now }
+            filtered = rehearsals.filter { $0.date >= today }
         case "Completed":
-            filtered = rehearsals.filter { $0.date < now }
+            filtered = rehearsals.filter { $0.date < today }
         default:
             filtered = rehearsals
         }

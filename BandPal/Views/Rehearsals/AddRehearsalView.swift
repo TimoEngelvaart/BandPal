@@ -383,9 +383,12 @@ struct AddRehearsalView: View {
     }
 
     private func convertAndValidateDate(from date: Date) {
-        let dateString = Self.validationFormatter.string(from: date)
-        if let date = Self.validationFormatter.date(from: dateString) {
-            validDate = date
+        // Normalize to midnight in local timezone to avoid timezone issues
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day], from: date)
+
+        if let normalizedDate = calendar.date(from: components) {
+            validDate = normalizedDate
             showDateError = false
         } else {
             validDate = nil

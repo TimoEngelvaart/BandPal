@@ -31,12 +31,15 @@ struct SetlistView: View {
 
     // Filter setlists by status
     private var filteredSetlists: [Setlist] {
-        let now = Date()
+        // Get today at midnight for accurate date comparison
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+
         switch selectedStatus {
         case "Upcoming":
-            return setlists.filter { $0.date >= now }
+            return setlists.filter { $0.date >= today }
         case "Completed":
-            return setlists.filter { $0.date < now }
+            return setlists.filter { $0.date < today }
         default:
             return setlists
         }
@@ -82,17 +85,16 @@ struct SetlistView: View {
                         }) {
                             SetlistItemView(setlistItem: setlist)
                                 .padding(.horizontal, 12)
-                                .padding(.top, 16)
                         }
                     }
                     .listRowBackground(Color.clear)
-                    .listRowInsets(EdgeInsets()) // Remove default padding to extend swipe area
+                    .listRowInsets(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
                     .listRowSeparator(.hidden)
                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                         Button(role: .destructive) {
                             modelContext.delete(setlist)
                         } label: {
-                            Label("Delete", systemImage: "trash")
+                            Image(systemName: "trash")
                         }
                     }
                 

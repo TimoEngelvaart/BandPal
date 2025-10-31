@@ -46,6 +46,9 @@ struct AddSetlistView: View {
         .onAppear {
             convertAndValidateDate(from: selectedDate)
         }
+        .onChange(of: selectedDate) { oldValue, newValue in
+            convertAndValidateDate(from: newValue)
+        }
         .overlay(
             ZStack {
                 if isDatePickerPresented {
@@ -144,14 +147,12 @@ struct AddSetlistView: View {
     }
 
     private func convertAndValidateDate(from date: Date) {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd-MM-yyyy"
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        // Normalize to midnight in local timezone to avoid timezone issues
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day], from: date)
 
-        let dateString = formatter.string(from: date)
-        if let date = formatter.date(from: dateString) {
-            validDate = date
+        if let normalizedDate = calendar.date(from: components) {
+            validDate = normalizedDate
             showDateError = false
         } else {
             validDate = nil
